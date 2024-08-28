@@ -1,61 +1,67 @@
 import { Button, Text, TextInput } from "react-native-paper";
 import { View } from "react-native";
-import Entypo from "@expo/vector-icons/Entypo";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import { ScrollView } from "react-native-gesture-handler";
+import { RootStackParams } from "../../navigation/AuthNavigator";
+import { StackScreenProps } from "@react-navigation/stack";
+import { useNavigation } from "@react-navigation/native";
 
 export const RegisterScreen = () => {
+  const navigation =
+    useNavigation<StackScreenProps<RootStackParams>["navigation"]>();
   return (
-    <View className="flex-1 bg-white justify-center items-center p-4">
-      <Text className="text-primary text-base">
-        ¿Es tu primera vez?{" "}
-        <Text className="text-primary font-bold underline italic">
-          Regístrate
-        </Text>
-      </Text>
-      <View className="w-full mt-6">
-        <TextInput
-          mode="flat"
-          underlineStyle={{ display: "none" }}
-          placeholderTextColor="gray"
-          className="mb-6 rounded-3xl border border-gray-300 bg-white"
-          placeholder="Gmail"
-        />
-        <TextInput
-          mode="flat"
-          underlineStyle={{ display: "none" }}
-          placeholderTextColor="gray"
-          secureTextEntry
-          placeholder="Contraseña"
-          className="mb-6 rounded-3xl border border-gray-300 bg-white"
-        />
-      </View>
-      <Text className="text-gray-500 underline mb-4">
-        Olvidaste tu Contraseña
-      </Text>
-      <Button mode="contained" className="bg-primary w-1/2 mb-8">
-        Iniciar Sesión
-      </Button>
-      <View className="flex-col justify-center items-center mt-6">
-        <Text className="mb-4">Regístrate con</Text>
-        <View className="flex-row space-x-8">
-          <Entypo name="facebook-with-circle" size={50} color="#7E1710" />
-          <AntDesign
-            name="apple1"
-            size={35}
-            color="#FFF"
-            style={{
-              backgroundColor: "#7E1710",
-              borderRadius: 25,
-              width: 50,
-              height: 50,
-              textAlign: "center",
-              paddingTop: 5,
-            }}
+    <ScrollView className="flex-1 bg-white p-6">
+      <View className="flex justify-center items-center">
+        <View className="w-full mt-6">
+          <Text className="mx-2 mb-2 text-gray-500 ">Nombres: </Text>
+          <TextInput
+            mode="flat"
+            underlineStyle={{ display: "none" }}
+            placeholderTextColor="gray"
+            className="mb-6 rounded-3xl border border-gray-300 h-11 bg-white"
+            keyboardType="default"
           />
-
-          <Entypo name="twitter-with-circle" size={50} color="#7E1710" />
+          <Text className="mx-2 mb-2 text-gray-500 ">Apellidos: </Text>
+          <TextInput
+            mode="flat"
+            underlineStyle={{ display: "none" }}
+            placeholderTextColor="gray"
+            className="mb-6 rounded-3xl border border-gray-300 h-11 bg-white"
+            keyboardType="email-address"
+          />
+          <Text className="mx-2 mb-2 text-gray-500">Celular: </Text>
+          <TextInput
+            mode="flat"
+            underlineStyle={{ display: "none" }}
+            placeholderTextColor="gray"
+            className="mb-6 rounded-3xl border border-gray-300 h-11 bg-white"
+          />
+          <Text className="mx-2 mb-2 text-gray-500">Contraseña: </Text>
+          <TextInput
+            mode="flat"
+            underlineStyle={{ display: "none" }}
+            placeholderTextColor="gray"
+            secureTextEntry
+            placeholder="Contraseña"
+            className="mb-6 rounded-3xl border border-gray-300 h-11 bg-white"
+          />
         </View>
+        <Button
+          onPress={() => navigation.navigate("LoginScreen")}
+          mode="contained"
+          className="bg-primary w-1/2 mb-8"
+        >
+          Registrar
+        </Button>
+        <Text className="text-primary text-base">
+          ¿Ya eres Miembro?{" "}
+          <Text
+            onPress={() => navigation.pop()}
+            className="text-primary font-bold underline italic"
+          >
+            Inicia Sesión
+          </Text>
+        </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 };

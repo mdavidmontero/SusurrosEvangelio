@@ -16,6 +16,7 @@ import { LoginScreen } from "../screens/auth/LoginScreen";
 import { globalColors } from "../../config";
 import { HomeScreen } from "../screens/home/HomeScreen";
 import { RegisterScreen } from "../screens/auth/RegisterScreen";
+import { SlidesScreen } from "../components/ui/SlidesScreen";
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -67,6 +68,16 @@ export const SideMenuNavigator = () => {
             <AntDesign name="book" size={24} color="black" />
           ),
           drawerLabel: "Ubicación",
+        }}
+      />
+      <Drawer.Screen
+        name="Slide"
+        component={SlidesScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <AntDesign name="book" size={24} color="black" />
+          ),
+          drawerLabel: "Slide",
         }}
       />
     </Drawer.Navigator>
