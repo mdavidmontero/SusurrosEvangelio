@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
-import { Button } from "react-native-paper";
 
 export const HomeScreen = () => {
   return (
@@ -9,7 +8,7 @@ export const HomeScreen = () => {
     <View className="flex-1 justify-center items-center px-5 gap-7">
       <TouchableOpacity className="w-64 h-24 rounded-3xl overflow-hidden p-0 border border-1">
         <ImageBackground
-          source={require("../../../../assets/slide-2.png")}
+          source={require("../../../../assets/slide-1.png")}
           className="flex-1 justify-center items-center"
           resizeMode="cover"
         >
@@ -27,7 +26,7 @@ export const HomeScreen = () => {
       </TouchableOpacity>
       <TouchableOpacity className="w-64 h-24 rounded-3xl overflow-hidden p-0 border border-1">
         <ImageBackground
-          source={require("../../../../assets/slide-2.png")}
+          source={require("../../../../assets/slide-3.png")}
           className="flex-1 justify-center items-center"
           resizeMode="cover"
         >
@@ -38,7 +37,7 @@ export const HomeScreen = () => {
       </TouchableOpacity>
       <TouchableOpacity className="w-64 h-24 rounded-3xl overflow-hidden p-0 border border-1">
         <ImageBackground
-          source={require("../../../../assets/slide-2.png")}
+          source={require("../../../../assets/slide-1.png")}
           className="flex-1 justify-center items-center"
           resizeMode="cover"
         >

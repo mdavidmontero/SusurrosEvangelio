@@ -5,17 +5,12 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import {
-  View,
-  Text,
-  Button,
-  useWindowDimensions,
-  StyleSheet,
-} from "react-native";
+import { View, Text, useWindowDimensions, StyleSheet } from "react-native";
 import { LoginScreen } from "../screens/auth/LoginScreen";
 import { RegisterScreen } from "../screens/auth/RegisterScreen";
 import { SlidesScreen } from "../components/ui/SlidesScreen";
 import { BotonUserNavigator } from "./UserNavigation";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -39,6 +34,18 @@ export const SideMenuNavigator = () => {
         },
         headerTitle: "",
         headerTintColor: "#fff",
+        headerRight: () => (
+          <MaterialIcons
+            name="logout"
+            size={24}
+            color="white"
+            style={{ marginRight: 10 }}
+          />
+        ),
+        drawerStyle: {
+          backgroundColor: "#fff",
+          width: 240,
+        },
         drawerActiveBackgroundColor: "#592C00",
         drawerActiveTintColor: "#fff",
       }}
