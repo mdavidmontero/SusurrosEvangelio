@@ -13,10 +13,9 @@ import {
   StyleSheet,
 } from "react-native";
 import { LoginScreen } from "../screens/auth/LoginScreen";
-import { globalColors } from "../../config";
-import { HomeScreen } from "../screens/home/HomeScreen";
 import { RegisterScreen } from "../screens/auth/RegisterScreen";
 import { SlidesScreen } from "../components/ui/SlidesScreen";
+import { BotonUserNavigator } from "./UserNavigation";
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -34,15 +33,19 @@ export const SideMenuNavigator = () => {
       screenOptions={{
         drawerType: dimensions.width >= 758 ? "permanent" : "slide",
         headerShown: true,
-        drawerActiveBackgroundColor: globalColors.primary,
-        drawerActiveTintColor: "white",
-        drawerInactiveTintColor: globalColors.primary,
-        drawerItemStyle: { borderRadius: 10, paddingHorizontal: 20 },
+        headerStyle: {
+          backgroundColor: "#592C00",
+          borderRadius: 20,
+        },
+        headerTitle: "",
+        headerTintColor: "#fff",
+        drawerActiveBackgroundColor: "#592C00",
+        drawerActiveTintColor: "#fff",
       }}
     >
       <Drawer.Screen
         name="HomeScreen"
-        component={HomeScreen}
+        component={BotonUserNavigator}
         options={{
           drawerIcon: ({ color }) => (
             <AntDesign name="book" size={24} color="black" />
@@ -98,8 +101,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
         /> */}
       </View>
       <View style={styles.containerText}>
-        <Text style={styles.infoProfile}>{"nombre"}</Text>
-        <Text style={styles.infoProfile}>{"correo"}</Text>
+        <Text style={styles.infoProfile}>{"Padre Alfonso Miranda"}</Text>
       </View>
 
       <DrawerItemList {...props} />
