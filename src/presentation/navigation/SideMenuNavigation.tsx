@@ -1,0 +1,122 @@
+import {
+  createDrawerNavigator,
+  DrawerContentComponentProps,
+  DrawerContentScrollView,
+  DrawerItemList,
+} from "@react-navigation/drawer";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import {
+  View,
+  Text,
+  Button,
+  useWindowDimensions,
+  StyleSheet,
+} from "react-native";
+import { LoginScreen } from "../screens/auth/LoginScreen";
+import { globalColors } from "../../config";
+import { HomeScreen } from "../screens/home/HomeScreen";
+import { RegisterScreen } from "../screens/auth/RegisterScreen";
+
+export type RootStackParams = {
+  LoginScreen: undefined;
+  RegisterScreen: undefined;
+};
+
+const Drawer = createDrawerNavigator();
+
+export const SideMenuNavigator = () => {
+  const dimensions = useWindowDimensions();
+
+  return (
+    <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      screenOptions={{
+        drawerType: dimensions.width >= 758 ? "permanent" : "slide",
+        headerShown: true,
+        drawerActiveBackgroundColor: globalColors.primary,
+        drawerActiveTintColor: "white",
+        drawerInactiveTintColor: globalColors.primary,
+        drawerItemStyle: { borderRadius: 10, paddingHorizontal: 20 },
+      }}
+    >
+      <Drawer.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <AntDesign name="book" size={24} color="black" />
+          ),
+          drawerLabel: "Ubicación",
+        }}
+      />
+      <Drawer.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <AntDesign name="book" size={24} color="black" />
+          ),
+          drawerLabel: "Configuración",
+        }}
+      />
+      <Drawer.Screen
+        name="Register"
+        component={RegisterScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <AntDesign name="book" size={24} color="black" />
+          ),
+          drawerLabel: "Ubicación",
+        }}
+      />
+    </Drawer.Navigator>
+  );
+};
+
+const CustomDrawerContent = (props: DrawerContentComponentProps) => {
+  return (
+    <DrawerContentScrollView {...props}>
+      <View style={styles.profileContainer}>
+        {/* <Image
+          source={
+            user?.fotoPerfil === ""
+              ? require("../../../assets/no-product-image.png")
+              : { uri: user?.fotoPerfil }
+          }
+          style={styles.profileImage}
+        /> */}
+      </View>
+      <View style={styles.containerText}>
+        <Text style={styles.infoProfile}>{"nombre"}</Text>
+        <Text style={styles.infoProfile}>{"correo"}</Text>
+      </View>
+
+      <DrawerItemList {...props} />
+      {/* <Button onPress={handleLogout}>Salir</Button> */}
+    </DrawerContentScrollView>
+  );
+};
+
+// Styles
+const styles = StyleSheet.create({
+  profileContainer: {
+    height: 200,
+    marginVertical: 10,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  profileImage: {
+    width: 170,
+    height: 170,
+    borderRadius: 100,
+  },
+  containerText: {
+    marginBottom: 10,
+  },
+  infoProfile: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+});
