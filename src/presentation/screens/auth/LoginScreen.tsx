@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Alert, Text, useWindowDimensions, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -6,13 +6,53 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { RootStackParams } from "../../navigation/AuthNavigator";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useState } from "react";
+import { RolUsuario, User } from "../../../domain/entities/user";
+import { login } from "../../../actions/auth.actions";
+import { obtenerUsuarioPorId } from "../../../actions/user.action";
 
 export const LoginScreen = () => {
+  const [isPosting, setisPosting] = useState(false);
+
+  const { top } = useSafeAreaInsets();
   const navigation =
     useNavigation<StackScreenProps<RootStackParams>["navigation"]>();
+  const [user, setUser] = useState({
+    correo: "",
+    password: "",
+  });
+
+  const handleSubmit = async () => {
+    if (user.correo.length === 0 || user.password.length === 0) {
+      return;
+    }
+    const wasSuccessful = await login(user.correo, user.password);
+    console.log(wasSuccessful);
+    setisPosting(true);
+    try {
+      if (wasSuccessful) {
+        const user = await obtenerUsuarioPorId(wasSuccessful);
+        if (user) {
+          setUser(user);
+        } else {
+          Alert.alert("Error", "No se encontró el usuario.");
+        }
+      }
+    } catch (error) {
+      Alert.alert(
+        "Error",
+        "Credenciales incorrectas. Por favor, verifica tus datos e intenta de nuevo."
+      );
+    }
+    setisPosting(false);
+  };
 
   return (
-    <View className="flex-1 bg-white justify-center items-center p-4">
+    <View
+      style={{ paddingTop: top }}
+      className="flex-1 bg-white justify-center items-center p-4"
+    >
       <Text className="text-primary text-base">
         ¿Es tu primera vez?{" "}
         <Text
@@ -29,6 +69,9 @@ export const LoginScreen = () => {
           placeholderTextColor="gray"
           className="mb-6 rounded-3xl border border-gray-300 bg-white"
           placeholder="Gmail"
+          onChangeText={(text) => {
+            setUser({ ...user, correo: text });
+          }}
         />
         <TextInput
           mode="flat"
@@ -37,15 +80,19 @@ export const LoginScreen = () => {
           secureTextEntry
           placeholder="Contraseña"
           className="mb-6 rounded-3xl border border-gray-300 bg-white"
+          onChangeText={(text) => {
+            setUser({ ...user, password: text });
+          }}
         />
       </View>
       <Text className="text-gray-500 underline mb-4">
         Olvidaste tu Contraseña
       </Text>
       <Button
-        onPress={() => {}}
+        onPress={handleSubmit}
         mode="contained"
         className="bg-primary w-1/2 mb-8"
+        disabled={isPosting}
       >
         Iniciar Sesión
       </Button>

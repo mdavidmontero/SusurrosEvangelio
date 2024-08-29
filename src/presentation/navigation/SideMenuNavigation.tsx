@@ -6,11 +6,9 @@ import {
 } from "@react-navigation/drawer";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { View, Text, useWindowDimensions, StyleSheet } from "react-native";
-import { LoginScreen } from "../screens/auth/LoginScreen";
-import { RegisterScreen } from "../screens/auth/RegisterScreen";
 import { SlidesScreen } from "../components/ui/SlidesScreen";
-import { BotonUserNavigator } from "./UserNavigation";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { BotonUserNavigator } from "./NavigationConfig";
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -60,26 +58,7 @@ export const SideMenuNavigator = () => {
           drawerLabel: "Ubicación",
         }}
       />
-      <Drawer.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{
-          drawerIcon: ({ color }) => (
-            <AntDesign name="book" size={24} color="black" />
-          ),
-          drawerLabel: "Configuración",
-        }}
-      />
-      <Drawer.Screen
-        name="Register"
-        component={RegisterScreen}
-        options={{
-          drawerIcon: ({ color }) => (
-            <AntDesign name="book" size={24} color="black" />
-          ),
-          drawerLabel: "Ubicación",
-        }}
-      />
+
       <Drawer.Screen
         name="Slide"
         component={SlidesScreen}

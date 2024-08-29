@@ -8,7 +8,7 @@ const MainNavigator = () => {
   const { user } = useAuthStore();
   return (
     <Stack.Navigator>
-      {user?.roles !== "ADMIN" ? (
+      {user?.roles === "ADMIN" ? (
         <Stack.Screen
           name="Admin"
           component={UserNavigator}

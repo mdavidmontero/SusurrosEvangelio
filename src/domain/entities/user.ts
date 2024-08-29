@@ -1,20 +1,19 @@
 export interface User {
   id: string;
+  nombres: string;
+  apellidos: string;
+  telefono: string;
   correo: string;
   password: string;
-  nombre: string;
-  fotoPerfil?: string;
-  telefono?: string;
-  direccion?: string;
   roles: RolUsuario;
 }
 
 export interface UserRegisro {
   id: string;
+  nombres: string;
+  apellidos: string;
+  telefono: string;
   correo: string;
-  nombre: string;
-  fotoPerfil?: string;
-  telefono?: string;
   roles: RolUsuario;
 }
 
