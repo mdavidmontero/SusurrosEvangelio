@@ -9,6 +9,8 @@ import { View, Text, useWindowDimensions, StyleSheet } from "react-native";
 import { SlidesScreen } from "../components/ui/SlidesScreen";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { BotonUserNavigator } from "./NavigationConfig";
+import { logout } from "../../actions/auth.actions";
+import { UbicacionScreen } from "../screens/home/UbicacionScreen";
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -16,6 +18,11 @@ export type RootStackParams = {
 };
 
 const Drawer = createDrawerNavigator();
+const handleLogout = async () => {
+  await logout().then(() => {
+    console.log("Sesion cerrada");
+  });
+};
 
 export const SideMenuNavigator = () => {
   const dimensions = useWindowDimensions();
@@ -31,18 +38,18 @@ export const SideMenuNavigator = () => {
           borderRadius: 20,
         },
         headerTitle: "",
-        headerTintColor: "#fff",
+        headerTintColor: "#FFF",
         headerRight: () => (
           <MaterialIcons
             name="logout"
-            size={24}
+            size={25}
             color="white"
-            style={{ marginRight: 10 }}
+            style={{ marginRight: 30 }}
+            onPress={handleLogout}
           />
         ),
         drawerStyle: {
           backgroundColor: "#fff",
-          width: 240,
         },
         drawerActiveBackgroundColor: "#592C00",
         drawerActiveTintColor: "#fff",
@@ -52,10 +59,9 @@ export const SideMenuNavigator = () => {
         name="HomeScreen"
         component={BotonUserNavigator}
         options={{
-          drawerIcon: ({ color }) => (
-            <AntDesign name="book" size={24} color="black" />
-          ),
           drawerLabel: "Ubicación",
+          drawerLabelStyle: { display: "none" },
+          drawerActiveBackgroundColor: "white",
         }}
       />
 
@@ -63,10 +69,14 @@ export const SideMenuNavigator = () => {
         name="Slide"
         component={SlidesScreen}
         options={{
-          drawerIcon: ({ color }) => (
-            <AntDesign name="book" size={24} color="black" />
-          ),
-          drawerLabel: "Slide",
+          drawerLabel: "Configuración",
+        }}
+      />
+      <Drawer.Screen
+        name="Cerrar Sesión"
+        component={UbicacionScreen}
+        options={{
+          drawerLabel: "Ubicación",
         }}
       />
     </Drawer.Navigator>
