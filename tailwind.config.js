@@ -8,6 +8,7 @@ module.exports = {
         secondary: "#582C00",
         tertiary: "#F5F5F5",
         bgIconos: "#7E1710",
+        bgcolorsChat: "#00D2FE",
       },
     },
   },

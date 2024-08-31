@@ -14,6 +14,12 @@ const MainNavigator = () => {
           component={UserNavigator}
           options={{ headerShown: false }}
         />
+      ) : user?.roles === "CLIENTE" ? (
+        <Stack.Screen
+          name="User"
+          component={UserNavigator}
+          options={{ headerShown: false }}
+        />
       ) : (
         <Stack.Screen
           name="Auth"
