@@ -6,10 +6,10 @@ import AdminChatListScreen from "./AdminChat";
 
 export const EspiritualScreen = () => {
   const user = useAuthStore((state) => state.user);
+  console.log(user);
   return (
     <View className="flex-1">
-      {/* <ChatScreen /> */}
-      <AdminChatListScreen />
+      {user?.roles === "CLIENTE" ? <ChatScreen /> : <AdminChatListScreen />}
     </View>
   );
 };

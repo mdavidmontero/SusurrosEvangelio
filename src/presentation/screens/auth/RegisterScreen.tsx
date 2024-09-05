@@ -1,5 +1,5 @@
 import { Button, Text, TextInput } from "react-native-paper";
-import { Alert, View } from "react-native";
+import { Alert, Image, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { RootStackParams } from "../../navigation/AuthNavigator";
 import { StackScreenProps } from "@react-navigation/stack";
@@ -7,8 +7,10 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { registerUser } from "../../../actions/auth.actions";
 import { RolUsuario } from "../../../domain/entities/user";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export const RegisterScreen = () => {
+  const { top } = useSafeAreaInsets();
   const [user, setUser] = useState({
     nombre: "",
     apellidos: "",
@@ -50,15 +52,19 @@ export const RegisterScreen = () => {
     Alert.alert("Error", "Error al crear el usuario");
   };
   return (
-    <ScrollView className="flex-1 bg-white p-6">
-      <View className="flex justify-center items-center">
-        <View className="w-full mt-6">
+    <ScrollView className="flex-1 p-6 bg-white">
+      <View className="flex items-center justify-center">
+        <Image
+          className="w-40 mt-10 h-60"
+          source={require("./../../../../assets/diseño-logo.png")}
+        />
+        <View className="w-full">
           <Text className="mx-2 mb-2 text-gray-500 ">Nombres: </Text>
           <TextInput
             mode="flat"
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
-            className="mb-6 rounded-3xl border border-gray-300 h-11 bg-white"
+            className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="default"
             onChangeText={(text) => {
               setUser({ ...user, nombre: text });
@@ -69,7 +75,7 @@ export const RegisterScreen = () => {
             mode="flat"
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
-            className="mb-6 rounded-3xl border border-gray-300 h-11 bg-white"
+            className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="default"
             onChangeText={(text) => {
               setUser({ ...user, apellidos: text });
@@ -80,7 +86,7 @@ export const RegisterScreen = () => {
             mode="flat"
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
-            className="mb-6 rounded-3xl border border-gray-300 h-11 bg-white"
+            className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="number-pad"
             onChangeText={(text) => {
               setUser({ ...user, telefono: text });
@@ -91,7 +97,7 @@ export const RegisterScreen = () => {
             mode="flat"
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
-            className="mb-6 rounded-3xl border border-gray-300 h-11 bg-white"
+            className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="email-address"
             onChangeText={(text) => {
               setUser({ ...user, correo: text });
@@ -103,7 +109,7 @@ export const RegisterScreen = () => {
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
             secureTextEntry
-            className="mb-6 rounded-3xl border border-gray-300 h-11 bg-white"
+            className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="default"
             onChangeText={(text) => {
               setUser({ ...user, password: text });
@@ -114,15 +120,15 @@ export const RegisterScreen = () => {
           onPress={handleChange}
           disabled={loading}
           mode="contained"
-          className="bg-primary w-1/2 mb-8"
+          className="w-1/2 mb-8 bg-primary"
         >
           Registrar
         </Button>
-        <Text className="text-primary text-base">
+        <Text className="text-base text-primary">
           ¿Ya eres Miembro?{" "}
           <Text
             onPress={() => navigation.pop()}
-            className="text-primary font-bold underline italic"
+            className="italic font-bold underline text-primary"
           >
             Inicia Sesión
           </Text>

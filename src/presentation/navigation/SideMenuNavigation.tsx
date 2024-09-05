@@ -4,7 +4,6 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import AntDesign from "@expo/vector-icons/AntDesign";
 import { View, Text, useWindowDimensions, StyleSheet } from "react-native";
 import { SlidesScreen } from "../components/ui/SlidesScreen";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";

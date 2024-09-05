@@ -28,23 +28,22 @@ const getAdminUid = async (): Promise<string | null> => {
   return null;
 };
 
-// Función para enviar mensaje al administrador
 export const sendMessageToAdmin = async (
-  uid: string, // UID del usuario autenticado
+  uid: string,
   text: string
 ): Promise<void> => {
   try {
     const adminUid = await getAdminUid();
     if (!adminUid) throw new Error("No se encontró al administrador");
 
-    const chatId = `${uid}_${adminUid}`; // ID único para la conversación entre usuario y admin
+    const chatId = `${uid}_${adminUid}`;
     const chatDocRef = doc(db, "chats", chatId);
     const chatDocSnap = await getDoc(chatDocRef);
 
     const newMessage: Message = {
       message: text,
       timestamp: new Date().toISOString(),
-      uid, // UID del usuario que envía el mensaje
+      uid,
     };
 
     if (chatDocSnap.exists()) {
@@ -52,15 +51,14 @@ export const sendMessageToAdmin = async (
       const messages = chatData?.messages || [];
       await updateDoc(chatDocRef, {
         messages: [...messages, newMessage],
-        hasNewMessages: true, // Indicar que hay mensajes nuevos
+        hasNewMessages: true,
       });
     } else {
-      // Si no existe, crea el chat
       await setDoc(chatDocRef, {
         chatId,
         messages: [newMessage],
         users: [uid, adminUid],
-        hasNewMessages: true, // Indicar que hay mensajes nuevos
+        hasNewMessages: true,
       });
     }
   } catch (error) {
@@ -85,7 +83,7 @@ export const getChatsForAdmin = async (adminUid: string): Promise<Chat[]> => {
 
     const chats: Chat[] = querySnapshot.docs.map((doc) => ({
       chatId: doc.id,
-      ...(doc.data() as Omit<Chat, "chatId">), // Asegúrate de que el tipo sea correcto
+      ...(doc.data() as Omit<Chat, "chatId">),
     }));
 
     return chats;
@@ -107,7 +105,7 @@ export const sendMessageFromAdmin = async (
     const newMessage: Message = {
       message: text,
       timestamp: new Date().toISOString(),
-      uid: adminUid, // UID del administrador
+      uid: adminUid,
     };
 
     if (chatDocSnap.exists()) {
@@ -115,7 +113,7 @@ export const sendMessageFromAdmin = async (
       const messages = chatData?.messages || [];
       await updateDoc(chatDocRef, {
         messages: [...messages, newMessage],
-        hasNewMessages: false, // Mensaje enviado por el admin, por lo que no es necesario marcarlo como nuevo
+        hasNewMessages: false,
       });
     } else {
       console.error("Chat no encontrado");
@@ -144,7 +142,7 @@ export const markMessagesAsRead = async (chatId: string): Promise<void> => {
   try {
     const chatDocRef = doc(db, "chats", chatId);
     await updateDoc(chatDocRef, {
-      hasNewMessages: false, // Marcar los mensajes como leídos
+      hasNewMessages: false,
     });
   } catch (error) {
     console.error("Error al marcar los mensajes como leídos:", error);
@@ -162,7 +160,7 @@ export const subscribeToChatsForAdmin = (
   const unsubscribe = onSnapshot(q, (querySnapshot) => {
     const chats: Chat[] = querySnapshot.docs.map((doc) => ({
       chatId: doc.id,
-      ...(doc.data() as Omit<Chat, "chatId">), // Asegúrate de que el tipo sea correcto
+      ...(doc.data() as Omit<Chat, "chatId">),
     }));
     callback(chats);
   });
