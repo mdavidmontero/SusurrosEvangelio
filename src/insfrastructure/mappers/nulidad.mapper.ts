@@ -6,6 +6,7 @@ export class NulidadMatrimonialMapper {
     nulidad: NulidadMatrimonial
   ): NulidadMatrimonialDataResponse {
     return {
+      id: nulidad.id,
       nombre: nulidad.nombre,
       apellidos: nulidad.apellidos,
       fechaNacimiento: nulidad.fechaNacimiento,
@@ -16,10 +17,11 @@ export class NulidadMatrimonialMapper {
       duracionConvivencia: nulidad.duracionConvivencia,
       motivoPrincipal: nulidad.motivoPrincipal,
       descripcionMotivo: nulidad.descripcionMotivo,
-      certificadoMatrimonio: nulidad.certificadoMatrimonio,
-      certificadoBautismo: nulidad.certificadoBautismo,
-      pruebasAdicionales: nulidad.pruebasAdicionales,
+      certificadoMatrimonioURL: nulidad.certificadoMatrimonioURL,
+      certificadoBautismoURL: nulidad.certificadoBautismoURL,
+      pruebasAdicionalesURL: nulidad.pruebasAdicionalesURL,
       consentimiento: nulidad.consentimiento,
+      estado: nulidad.estado,
     };
   }
 }

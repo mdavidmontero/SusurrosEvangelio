@@ -32,7 +32,7 @@ export const HomeScreen = ({ navigation }: Props) => {
       </TouchableOpacity>
       <TouchableOpacity
         className="w-64 h-24 p-0 overflow-hidden border rounded-3xl border-1"
-        onPress={() => navigation.navigate("NulidadMatrimonialScreen")}
+        onPress={() => navigation.navigate("GestionNulidadMatrimonial")}
       >
         <ImageBackground
           source={require("../../../../assets/slide-3.png")}

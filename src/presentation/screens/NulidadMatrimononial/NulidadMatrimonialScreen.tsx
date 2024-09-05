@@ -276,7 +276,7 @@ export default function NulidadMatrimonialScreen() {
           </Text>
           <TouchableOpacity
             className="flex items-center justify-center h-10 bg-white border-2 rounded-3xl border-primary"
-            onPress={() => handleDocumentPick("certificadoMatrimonio")}
+            onPress={() => handleDocumentPick("certificadoMatrimonioURL")}
           >
             <Text className="text-primary">Seleccionar archivo (PDF)</Text>
           </TouchableOpacity>
@@ -287,7 +287,7 @@ export default function NulidadMatrimonialScreen() {
           </Text>
           <TouchableOpacity
             className="flex items-center justify-center h-10 bg-white border-2 rounded-3xl border-primary"
-            onPress={() => handleDocumentPick("certificadoBautismo")}
+            onPress={() => handleDocumentPick("certificadoBautismoURL")}
           >
             <Text className="text-primary">Seleccionar archivo (PDF)</Text>
           </TouchableOpacity>
@@ -298,7 +298,7 @@ export default function NulidadMatrimonialScreen() {
           </Text>
           <TouchableOpacity
             className="flex items-center justify-center h-10 bg-white border-2 rounded-3xl border-primary"
-            onPress={() => handleDocumentPick("pruebasAdicionales")}
+            onPress={() => handleDocumentPick("pruebasAdicionalesURL")}
           >
             <Text className="text-primary">Seleccionar archivo (PDF)</Text>
           </TouchableOpacity>

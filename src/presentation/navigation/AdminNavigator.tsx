@@ -4,12 +4,17 @@ import AdminChatScreen from "../screens/Espiritual/ChatAdminUser";
 import { useChatStore } from "../store/chat-store";
 import { EvangelizacionScreen } from "../screens/Evangelizacion/EvangelizacionScreen";
 import NulidadMatrimonialScreen from "../screens/NulidadMatrimononial/NulidadMatrimonialScreen";
+import GestionNulidadMatrimonial from "../screens/NulidadMatrimononial/GestionNulidadMatrimonial";
+import NulidadMatrimonialDetailScreen from "../screens/NulidadMatrimononial/NulidadMatrimonialAdminScreen";
+import HomeNulidad from "../screens/NulidadMatrimononial/HomeNulidad";
 
 export type RootStackParams = {
   Home: undefined;
   AdminChatScreen: { chatId: string };
   EvangelizacionScreen: undefined;
-  NulidadMatrimonialScreen: undefined;
+
+  GestionNulidadMatrimonial: undefined;
+  DetalleNulidadMatrimonial: { id: string };
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -42,9 +47,10 @@ function AdminNavigator() {
         name="EvangelizacionScreen"
         component={EvangelizacionScreen}
       />
+      <Stack.Screen name="GestionNulidadMatrimonial" component={HomeNulidad} />
       <Stack.Screen
-        name="NulidadMatrimonialScreen"
-        component={NulidadMatrimonialScreen}
+        name="DetalleNulidadMatrimonial"
+        component={NulidadMatrimonialDetailScreen}
       />
     </Stack.Navigator>
   );

@@ -1,6 +1,7 @@
 // iniciar valores
 
 export const NulidadMatrimonialInitialValues = {
+  id: "",
   nombre: "",
   apellidos: "",
   fechaNacimiento: new Date(),
@@ -11,8 +12,9 @@ export const NulidadMatrimonialInitialValues = {
   duracionConvivencia: "",
   motivoPrincipal: "",
   descripcionMotivo: "",
-  certificadoMatrimonio: null,
-  certificadoBautismo: null,
-  pruebasAdicionales: null,
+  certificadoMatrimonioURL: null,
+  certificadoBautismoURL: null,
+  pruebasAdicionalesURL: null,
   consentimiento: false,
+  estado: "pendiente",
 };

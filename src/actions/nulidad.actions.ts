@@ -52,29 +52,29 @@ export const enviarSolicitudNulidad = async (
   solicitud: NulidadMatrimonial
 ): Promise<NulidadMatrimonialDataResponse> => {
   try {
-    const certificadoMatrimonioURL = await subirarchivos(
-      solicitud.certificadoMatrimonio,
+    const certificadoMatrimonio = await subirarchivos(
+      solicitud.certificadoMatrimonioURL,
       "certificadoMatrimonio"
     );
-    const certificadoBautismoURL = await subirarchivos(
-      solicitud.certificadoBautismo,
+    const certificadoBautismo = await subirarchivos(
+      solicitud.certificadoBautismoURL,
       "certificadoBautismo"
     );
-    const pruebasAdicionalesURL = await subirarchivos(
-      solicitud.pruebasAdicionales,
+    const pruebasAdicionales = await subirarchivos(
+      solicitud.pruebasAdicionalesURL,
       "pruebasAdicionales"
     );
     const solicitudConURLs = {
       ...solicitud,
-      certificadoMatrimonioURL,
-      certificadoBautismoURL,
-      pruebasAdicionalesURL,
-    };
-
-    const {
       certificadoMatrimonio,
       certificadoBautismo,
       pruebasAdicionales,
+    };
+
+    const {
+      certificadoMatrimonioURL,
+      certificadoBautismoURL,
+      pruebasAdicionalesURL,
       ...solicitudSinArchivos
     } = solicitudConURLs;
 
@@ -92,4 +92,42 @@ export const enviarSolicitudNulidad = async (
     );
     throw new Error("Error al enviar la solicitud de nulidad matrimonial");
   }
+};
+
+export const getNulidadMatrimonial = (
+  callback: (data: NulidadMatrimonialDataResponse[]) => void
+): (() => void) => {
+  return onSnapshot(nulidadRef, (querySnapshot) => {
+    const nulidadData = querySnapshot.docs.map(
+      (doc) =>
+        ({
+          ...doc.data(),
+          id: doc.id,
+        } as NulidadMatrimonial)
+    );
+    const data = nulidadData.map((nulidad) =>
+      NulidadMatrimonialMapper.toResponse(nulidad)
+    );
+    callback(data);
+  });
+};
+
+export const getNulidadMatrimonialById = async (
+  id: string
+): Promise<NulidadMatrimonialDataResponse | null> => {
+  const docRef = doc(nulidadRef, id);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    const nulidadData = docSnap.data() as NulidadMatrimonial;
+    return NulidadMatrimonialMapper.toResponse(nulidadData);
+  }
+  return null;
+};
+
+export const actualizarEstadoNulidad = async (
+  id: string,
+  estado: string
+): Promise<void> => {
+  const docRef = doc(nulidadRef, id);
+  await updateDoc(docRef, { estado });
 };

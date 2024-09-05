@@ -1,4 +1,5 @@
 export interface NulidadMatrimonial {
+  id: string;
   nombre: string;
   apellidos: string;
   fechaNacimiento: Date;
@@ -10,8 +11,9 @@ export interface NulidadMatrimonial {
 
   motivoPrincipal: string;
   descripcionMotivo: string;
-  certificadoMatrimonio: File | null;
-  certificadoBautismo: File | null;
-  pruebasAdicionales: File | null;
+  certificadoMatrimonioURL: File | null;
+  certificadoBautismoURL: File | null;
+  pruebasAdicionalesURL: File | null;
   consentimiento: boolean;
+  estado: string;
 }
