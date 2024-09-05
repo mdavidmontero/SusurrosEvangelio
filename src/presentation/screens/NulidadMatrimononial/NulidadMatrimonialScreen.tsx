@@ -14,28 +14,15 @@ import { Picker } from "@react-native-picker/picker";
 import * as DocumentPicker from "expo-document-picker";
 import { NulidadMatrimonial } from "../../../domain/entities/nulidad.entities";
 import { enviarSolicitudNulidad } from "../../../actions/nulidad.actions";
+import { NulidadMatrimonialInitialValues } from "../../../types";
 
 export default function NulidadMatrimonialScreen() {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
   const [consentimiento, setConsentimiento] = useState(false);
-  const [nulidad, setNulidad] = useState<NulidadMatrimonial>({
-    nombre: "",
-    apellidos: "",
-    fechaNacimiento: new Date(),
-    correoElectronico: "",
-    telefonoContacto: "",
-    lugarMatrimonio: "",
-    nombreSacerdoteCelebrante: "",
-    duracionConvivencia: "",
-    motivoPrincipal: "",
-    descripcionMotivo: "",
-    certificadoMatrimonio: null,
-    certificadoBautismo: null,
-    pruebasAdicionales: null,
-    consentimiento: false,
-  });
-  console.log(nulidad);
+  const [nulidad, setNulidad] = useState<NulidadMatrimonial>(
+    NulidadMatrimonialInitialValues
+  );
 
   const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     const currentDate = selectedDate || date;
@@ -78,9 +65,11 @@ export default function NulidadMatrimonialScreen() {
         ...nulidad,
         consentimiento: consentimiento,
       };
-      await enviarSolicitudNulidad(nulidadToSubmit);
-
-      console.log("Solicitud enviada con éxito");
+      const envio = await enviarSolicitudNulidad(nulidadToSubmit);
+      if (envio) {
+        setNulidad(NulidadMatrimonialInitialValues);
+        console.log("Solicitud enviada con éxito");
+      }
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);
     }
@@ -98,6 +87,7 @@ export default function NulidadMatrimonialScreen() {
         <View className="mx-2 mb-4">
           <Text className="mb-2 text-base text-primary">Nombre</Text>
           <TextInput
+            cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
             mode="flat"
@@ -109,6 +99,7 @@ export default function NulidadMatrimonialScreen() {
         <View className="mx-2 mb-4">
           <Text className="mb-2 text-base text-primary">Apellidos</Text>
           <TextInput
+            cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
             mode="flat"
@@ -121,6 +112,7 @@ export default function NulidadMatrimonialScreen() {
           <Text className="mb-2 text-base text-primary">Fecha Nacimiento</Text>
           <TouchableOpacity onPress={showDatepicker}>
             <TextInput
+              cursorColor="#592C00"
               underlineColor="transparent"
               activeUnderlineColor="transparent"
               mode="flat"
@@ -144,6 +136,7 @@ export default function NulidadMatrimonialScreen() {
             Correo Electronico
           </Text>
           <TextInput
+            cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
             mode="flat"
@@ -160,6 +153,7 @@ export default function NulidadMatrimonialScreen() {
             Telefono del Contacto
           </Text>
           <TextInput
+            cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
             mode="flat"
@@ -179,6 +173,7 @@ export default function NulidadMatrimonialScreen() {
             Lugar del Matrimonio
           </Text>
           <TextInput
+            cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
             mode="flat"
@@ -194,6 +189,7 @@ export default function NulidadMatrimonialScreen() {
             Nombre del Sacerdote Celebrante
           </Text>
           <TextInput
+            cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
             mode="flat"
@@ -209,6 +205,7 @@ export default function NulidadMatrimonialScreen() {
             Duración de la Convivencia
           </Text>
           <TextInput
+            cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
             mode="flat"
@@ -257,11 +254,13 @@ export default function NulidadMatrimonialScreen() {
         <View className="mx-2 mb-4">
           <Text className="mb-2 text-base text-primary">Descripción</Text>
           <TextInput
+            cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
             mode="flat"
-            className="bg-white border-2 h-50 rounded-3xl border-primary"
+            className="bg-white border-2 rounded-3xl border-primary"
             multiline={true}
+            numberOfLines={4}
             value={nulidad.descripcionMotivo}
             onChangeText={(text) =>
               setNulidad({ ...nulidad, descripcionMotivo: text })
@@ -279,9 +278,7 @@ export default function NulidadMatrimonialScreen() {
             className="flex items-center justify-center h-10 bg-white border-2 rounded-3xl border-primary"
             onPress={() => handleDocumentPick("certificadoMatrimonio")}
           >
-            <Text className="text-primary">
-              Seleccionar archivo (PDF o imagen)
-            </Text>
+            <Text className="text-primary">Seleccionar archivo (PDF)</Text>
           </TouchableOpacity>
         </View>
         <View className="mx-2 mb-4">
@@ -292,9 +289,7 @@ export default function NulidadMatrimonialScreen() {
             className="flex items-center justify-center h-10 bg-white border-2 rounded-3xl border-primary"
             onPress={() => handleDocumentPick("certificadoBautismo")}
           >
-            <Text className="text-primary">
-              Seleccionar archivo (PDF o imagen)
-            </Text>
+            <Text className="text-primary">Seleccionar archivo (PDF)</Text>
           </TouchableOpacity>
         </View>
         <View className="mx-2 mb-4">
@@ -305,9 +300,7 @@ export default function NulidadMatrimonialScreen() {
             className="flex items-center justify-center h-10 bg-white border-2 rounded-3xl border-primary"
             onPress={() => handleDocumentPick("pruebasAdicionales")}
           >
-            <Text className="text-primary">
-              Seleccionar archivo (PDF o imagen)
-            </Text>
+            <Text className="text-primary">Seleccionar archivo (PDF)</Text>
           </TouchableOpacity>
         </View>
         <View className="mx-2 mb-4">
