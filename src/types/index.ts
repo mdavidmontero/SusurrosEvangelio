@@ -18,3 +18,13 @@ export const NulidadMatrimonialInitialValues = {
   consentimiento: false,
   estado: "pendiente",
 };
+
+export const CitacionInitialValues = {
+  id: "",
+  titulo: "",
+  descripcion: "",
+  fecha: new Date(),
+  hora: new Date(),
+  lugar: "",
+  responsable: "",
+};

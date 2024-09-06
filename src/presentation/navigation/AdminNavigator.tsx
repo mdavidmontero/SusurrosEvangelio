@@ -3,10 +3,14 @@ import { SideMenuNavigator } from "./SideMenuNavigation";
 import AdminChatScreen from "../screens/Espiritual/ChatAdminUser";
 import { useChatStore } from "../store/chat-store";
 import { EvangelizacionScreen } from "../screens/Evangelizacion/EvangelizacionScreen";
-import NulidadMatrimonialScreen from "../screens/NulidadMatrimononial/NulidadMatrimonialScreen";
-import GestionNulidadMatrimonial from "../screens/NulidadMatrimononial/GestionNulidadMatrimonial";
+
 import NulidadMatrimonialDetailScreen from "../screens/NulidadMatrimononial/NulidadMatrimonialAdminScreen";
 import HomeNulidad from "../screens/NulidadMatrimononial/HomeNulidad";
+import PastoralEscuchaScreen from "../screens/pastoralEscucha/PastoralEscuchaScreen";
+import NewFormCitacionScreen from "../screens/pastoralEscucha/NewFormCitacionScreen";
+import DetallesCitacionScreen from "../screens/pastoralEscucha/DetallesCitacionScreen";
+import IglesiaVirtualScreen from "../screens/IglesiaVirtual/IglesiaVirtualScreen";
+import { SlidesScreen } from "../components/ui/SlidesScreen";
 
 export type RootStackParams = {
   Home: undefined;
@@ -15,6 +19,11 @@ export type RootStackParams = {
 
   GestionNulidadMatrimonial: undefined;
   DetalleNulidadMatrimonial: { id: string };
+  PastoralEscuchaScreen: undefined;
+  NewFormCitacionScreen: { id?: string };
+  DetallesCitacionScreen: { id: string };
+  IglesiaVirtualScreen: undefined;
+  SlidesScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -52,6 +61,31 @@ function AdminNavigator() {
         name="DetalleNulidadMatrimonial"
         component={NulidadMatrimonialDetailScreen}
       />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: "#592C00",
+          },
+          headerTintColor: "#fff",
+        }}
+        name="PastoralEscuchaScreen"
+        component={PastoralEscuchaScreen}
+      />
+      <Stack.Screen
+        name="NewFormCitacionScreen"
+        component={NewFormCitacionScreen}
+      />
+      <Stack.Screen
+        name="DetallesCitacionScreen"
+        component={DetallesCitacionScreen}
+      />
+      <Stack.Screen
+        name="IglesiaVirtualScreen"
+        component={IglesiaVirtualScreen}
+      />
+      <Stack.Screen name="SlidesScreen" component={SlidesScreen} />
     </Stack.Navigator>
   );
 }
