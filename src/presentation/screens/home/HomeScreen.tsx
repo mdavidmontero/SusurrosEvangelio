@@ -44,7 +44,10 @@ export const HomeScreen = ({ navigation }: Props) => {
           </Text>
         </ImageBackground>
       </TouchableOpacity>
-      <TouchableOpacity className="w-64 h-24 p-0 overflow-hidden border rounded-3xl border-1">
+      <TouchableOpacity
+        className="w-64 h-24 p-0 overflow-hidden border rounded-3xl border-1"
+        onPress={() => navigation.navigate("PastoralEscuchaScreen")}
+      >
         <ImageBackground
           source={require("../../../../assets/slide-1.png")}
           className="items-center justify-center flex-1"
