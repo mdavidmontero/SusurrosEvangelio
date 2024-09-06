@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { Button } from "../../components/ui/Button";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Slide {
   title: string;
@@ -57,6 +58,19 @@ export const SlidesScreen = () => {
     });
   };
 
+  const handleFinish = async () => {
+    const data = await AsyncStorage.setItem("isFirstLaunch", "true");
+    console.log(data);
+    navigation.goBack();
+  };
+
+  useEffect(() => {
+    const checkTutorial = async () => {
+      const hasSeenTutorial = await AsyncStorage.getItem("isFirstLaunch");
+      console.log(hasSeenTutorial);
+    };
+    checkTutorial();
+  }, []);
   return (
     <View className="flex-1 ">
       <FlatList
@@ -73,7 +87,7 @@ export const SlidesScreen = () => {
       {currentSlideIndex === items.length - 1 ? (
         <Button
           text="Finalizar"
-          onPress={() => navigation.goBack()}
+          onPress={handleFinish}
           styles={{ position: "absolute", bottom: 60, left: 150, width: 100 }}
         />
       ) : (
@@ -97,7 +111,7 @@ const SlideItem = ({ item }: SlideItemProps) => {
 
   return (
     <View
-      className="flex-1 bg-white rounded-md p-10 justify-center"
+      className="justify-center flex-1 p-10 bg-white rounded-md"
       style={{
         width: width,
       }}
@@ -112,7 +126,7 @@ const SlideItem = ({ item }: SlideItemProps) => {
         }}
       />
 
-      <Text className="text-xl font-bold text-primary italic text-center">
+      <Text className="text-xl italic font-bold text-center text-primary">
         {title}
       </Text>
 

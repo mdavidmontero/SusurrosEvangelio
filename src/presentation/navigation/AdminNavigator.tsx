@@ -9,6 +9,8 @@ import HomeNulidad from "../screens/NulidadMatrimononial/HomeNulidad";
 import PastoralEscuchaScreen from "../screens/pastoralEscucha/PastoralEscuchaScreen";
 import NewFormCitacionScreen from "../screens/pastoralEscucha/NewFormCitacionScreen";
 import DetallesCitacionScreen from "../screens/pastoralEscucha/DetallesCitacionScreen";
+import IglesiaVirtualScreen from "../screens/IglesiaVirtual/IglesiaVirtualScreen";
+import { SlidesScreen } from "../components/ui/SlidesScreen";
 
 export type RootStackParams = {
   Home: undefined;
@@ -20,6 +22,8 @@ export type RootStackParams = {
   PastoralEscuchaScreen: undefined;
   NewFormCitacionScreen: { id?: string };
   DetallesCitacionScreen: { id: string };
+  IglesiaVirtualScreen: undefined;
+  SlidesScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -77,6 +81,11 @@ function AdminNavigator() {
         name="DetallesCitacionScreen"
         component={DetallesCitacionScreen}
       />
+      <Stack.Screen
+        name="IglesiaVirtualScreen"
+        component={IglesiaVirtualScreen}
+      />
+      <Stack.Screen name="SlidesScreen" component={SlidesScreen} />
     </Stack.Navigator>
   );
 }

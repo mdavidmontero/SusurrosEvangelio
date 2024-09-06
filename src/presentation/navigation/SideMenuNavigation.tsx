@@ -4,12 +4,18 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { View, Text, useWindowDimensions, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  useWindowDimensions,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { SlidesScreen } from "../components/ui/SlidesScreen";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { BotonUserNavigator } from "./NavigationConfig";
 import { logout } from "../../actions/auth.actions";
-import { UbicacionScreen } from "../screens/home/UbicacionScreen";
+import UbicacionScreen from "../screens/ubicacion/UbicacionScreen";
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -58,24 +64,22 @@ export const SideMenuNavigator = () => {
         name="HomeScreen"
         component={BotonUserNavigator}
         options={{
-          drawerLabel: "Ubicación",
-          drawerLabelStyle: { display: "none" },
-          drawerActiveBackgroundColor: "white",
+          drawerLabel: "Inicio",
+
+          drawerIcon: () => (
+            <MaterialIcons name="home" size={22} color="#cd99ae" />
+          ),
         }}
       />
 
       <Drawer.Screen
-        name="Slide"
-        component={SlidesScreen}
-        options={{
-          drawerLabel: "Configuración",
-        }}
-      />
-      <Drawer.Screen
-        name="Cerrar Sesión"
+        name="UbicacionScreen"
         component={UbicacionScreen}
         options={{
-          drawerLabel: "Ubicación",
+          drawerLabel: "Ubicacion",
+          drawerIcon: () => (
+            <MaterialIcons name="location-pin" size={22} color="#cd99ae" />
+          ),
         }}
       />
     </Drawer.Navigator>
@@ -99,8 +103,15 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
         <Text style={styles.infoProfile}>{"Padre Alfonso Miranda"}</Text>
       </View>
 
-      <DrawerItemList {...props} />
-      {/* <Button onPress={handleLogout}>Salir</Button> */}
+      <View style={styles.drawerOptions}>
+        <DrawerItemList {...props} />
+        <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
+          <View className="flex-row items-center gap-2">
+            <MaterialIcons name="logout" size={22} color="#cd99ae" />
+            <Text style={styles.logoutText}>Cerrar Sesión</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </DrawerContentScrollView>
   );
 };
@@ -120,11 +131,29 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   containerText: {
-    marginBottom: 10,
+    marginBottom: 20,
+    alignItems: "center",
   },
   infoProfile: {
     textAlign: "center",
     fontWeight: "bold",
+    fontSize: 18,
+    color: "#592C00",
+  },
+  drawerOptions: {
+    marginTop: 80,
+    paddingHorizontal: 10,
+  },
+  logoutButton: {
+    marginVertical: 10,
+    padding: 10,
+    marginLeft: 10,
+    borderRadius: 5,
+  },
+  logoutText: {
+    color: "#592C00",
+    fontWeight: "bold",
     fontSize: 16,
+    textAlign: "left",
   },
 });
