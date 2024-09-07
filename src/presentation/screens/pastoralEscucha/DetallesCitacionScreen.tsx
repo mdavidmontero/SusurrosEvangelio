@@ -8,6 +8,7 @@ import { Citacion } from "../../../domain/entities/citacion.entities";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Ionicons } from "@expo/vector-icons";
 import { Timestamp } from "firebase/firestore"; // Asegúrate de tener esto
+import { formatFecha, formatHora } from "../../../utils";
 
 export default function DetallesCitacionScreen() {
   const { top } = useSafeAreaInsets();
@@ -25,31 +26,6 @@ export default function DetallesCitacionScreen() {
   useEffect(() => {
     getCitacion();
   }, []);
-
-  const formatFecha = (fecha: Timestamp | Date | undefined) => {
-    if (!fecha) return "Fecha no disponible";
-
-    if (fecha instanceof Timestamp) {
-      return new Date(fecha.seconds * 1000).toLocaleDateString();
-    }
-
-    return fecha.toLocaleDateString();
-  };
-
-  const formatHora = (hora: Timestamp | Date | undefined) => {
-    if (!hora) return "Hora no disponible";
-    if (hora instanceof Timestamp) {
-      return new Date(hora.seconds * 1000).toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-    }
-
-    return hora.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
 
   return (
     <View className="flex-1 bg-gray-100" style={{ paddingTop: top }}>

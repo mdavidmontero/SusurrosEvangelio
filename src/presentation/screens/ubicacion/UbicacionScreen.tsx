@@ -1,12 +1,11 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import MapView, { Marker } from "react-native-maps";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons"; // Importing the icon library
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParams } from "../../navigation/UserNavigation";
 import { useNavigation } from "@react-navigation/native";
 
 export default function UbicacionScreen() {
-  // Added navigation prop
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
   const churchLocation = {
     latitude: 10.474053608077087,

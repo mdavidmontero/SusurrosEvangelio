@@ -8,11 +8,13 @@ import { useEffect, useState } from "react";
 import { getcitaciones } from "../../../actions/citacion.actions";
 import { Citacion } from "../../../domain/entities/citacion.entities";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export default function PastoralEscuchaScreen() {
   const { top } = useSafeAreaInsets();
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
   const [citaciones, setCitaciones] = useState<Citacion[]>([]);
+  const { user } = useAuthStore();
 
   useEffect(() => {
     const fetchCitaciones = async () => {
@@ -29,15 +31,27 @@ export default function PastoralEscuchaScreen() {
 
   return (
     <View className="flex justify-center">
-      <Button
-        mode="contained"
-        className="absolute top-0 right-0 w-40 h-10 mx-2 mt-2 bg-primary"
-        onPress={() => navigation.navigate("NewFormCitacionScreen", { id: "" })}
+      {user?.roles === "ADMIN" && (
+        <Button
+          mode="contained"
+          className={`${
+            user?.roles === "ADMIN"
+              ? "absolute top-0 right-0 w-40 h-10 mx-2 mt-2 bg-primary mt-5"
+              : "relative"
+          }`}
+          onPress={() =>
+            navigation.navigate("NewFormCitacionScreen", { id: "" })
+          }
+        >
+          <Text className="text-white">Nueva Citación</Text>
+        </Button>
+      )}
+      <View
+        className={`flex items-center justify-center italic ${
+          user?.roles === "ADMIN" ? "mt-20" : "mt-10"
+        }`}
       >
-        <Text className="text-white">Nueva Citación</Text>
-      </Button>
-      <View className="flex items-center justify-center italic mt-14">
-        <Text className="text-lg font-bold text-center text-primary">
+        <Text className="text-lg font-bold text-center text-primary ">
           Temas de Citación
         </Text>
         <View className="w-full px-4 mt-4">
@@ -57,16 +71,18 @@ export default function PastoralEscuchaScreen() {
                   </Text>
                   <Text className="text-gray-600">{item.descripcion}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("NewFormCitacionScreen", {
-                      id: item.id,
-                    })
-                  }
-                  className="ml-4"
-                >
-                  <Ionicons name="create" size={24} color="primary" />
-                </TouchableOpacity>
+                {user?.roles === "ADMIN" && (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("NewFormCitacionScreen", {
+                        id: item.id,
+                      })
+                    }
+                    className="ml-4"
+                  >
+                    <Ionicons name="create" size={24} color="primary" />
+                  </TouchableOpacity>
+                )}
               </View>
             )}
           />
