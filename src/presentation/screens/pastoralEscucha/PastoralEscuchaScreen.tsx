@@ -36,7 +36,7 @@ export default function PastoralEscuchaScreen() {
           mode="contained"
           className={`${
             user?.roles === "ADMIN"
-              ? "absolute top-0 right-0 w-40 h-10 mx-2 mt-2 bg-primary mt-5"
+              ? "absolute top-0 right-0 w-40 h-10 mx-2 mt-5 bg-primary"
               : "relative"
           }`}
           onPress={() =>
