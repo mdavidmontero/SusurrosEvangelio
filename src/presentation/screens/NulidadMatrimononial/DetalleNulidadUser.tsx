@@ -18,7 +18,6 @@ export default function DetalleNulidadUser() {
     loadNulidadMatrimonial();
   }, []);
 
-  console.log(nulidadMatrimonial);
   const loadNulidadMatrimonial = async () => {
     const data = await getNulidadMatrimonialByUserId(user?.id || "");
     if (Array.isArray(data) && data.length > 0) {

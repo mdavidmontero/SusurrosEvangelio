@@ -11,11 +11,12 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { SlidesScreen } from "../components/ui/SlidesScreen";
+
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { BotonUserNavigator } from "./NavigationConfig";
 import { logout } from "../../actions/auth.actions";
 import UbicacionScreen from "../screens/ubicacion/UbicacionScreen";
+import SuscripcionScreen from "../screens/PagoSuscripcion/SuscripcionScreen";
 
 export type RootStackParams = {
   LoginScreen: undefined;
@@ -79,6 +80,16 @@ export const SideMenuNavigator = () => {
           drawerLabel: "Ubicacion",
           drawerIcon: () => (
             <MaterialIcons name="location-pin" size={22} color="#cd99ae" />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="SuscripcionScreen"
+        component={SuscripcionScreen}
+        options={{
+          drawerLabel: "Suscripcion",
+          drawerIcon: () => (
+            <MaterialIcons name="payment" size={22} color="#cd99ae" />
           ),
         }}
       />
