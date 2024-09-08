@@ -13,6 +13,7 @@ import UbicacionScreen from "../screens/ubicacion/UbicacionScreen";
 import { SlidesScreen } from "../components/ui/SlidesScreen";
 import DetalleNulidadUser from "../screens/NulidadMatrimononial/DetalleNulidadUser";
 import SuscripcionScreen from "../screens/PagoSuscripcion/SuscripcionScreen";
+import EvangelizacionForm from "../screens/Evangelizacion/EvangelizacionForm";
 
 export type RootStackParams = {
   Home: undefined;
@@ -28,6 +29,7 @@ export type RootStackParams = {
   SlidesScreen: undefined;
   DetalleNulidadUser: undefined;
   SuscripcionScreen: undefined;
+  EvangelizacionForm: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -123,6 +125,7 @@ function UserNavigator() {
       <Stack.Screen name="SlidesScreen" component={SlidesScreen} />
       <Stack.Screen name="DetalleNulidadUser" component={DetalleNulidadUser} />
       <Stack.Screen name="SuscripcionScreen" component={SuscripcionScreen} />
+      <Stack.Screen name="EvangelizacionForm" component={EvangelizacionForm} />
     </Stack.Navigator>
   );
 }
