@@ -1,5 +1,6 @@
 export interface NulidadMatrimonial {
   id: string;
+  idUsuario: string;
   nombre: string;
   apellidos: string;
   fechaNacimiento: Date;

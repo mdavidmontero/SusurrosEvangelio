@@ -49,7 +49,8 @@ export const subirarchivos = async (
 const nulidadRef: CollectionReference<DocumentData> = collection(db, "nulidad");
 
 export const enviarSolicitudNulidad = async (
-  solicitud: NulidadMatrimonial
+  solicitud: NulidadMatrimonial,
+  idUsuario: string
 ): Promise<NulidadMatrimonialDataResponse> => {
   try {
     const certificadoMatrimonio = await subirarchivos(
@@ -70,15 +71,20 @@ export const enviarSolicitudNulidad = async (
       certificadoBautismo,
       pruebasAdicionales,
     };
-
     const {
-      certificadoMatrimonioURL,
-      certificadoBautismoURL,
-      pruebasAdicionalesURL,
+      certificadoMatrimonio: certificadoMatrimonioURL,
+      certificadoBautismo: certificadoBautismoURL,
+      pruebasAdicionales: pruebasAdicionalesURL,
       ...solicitudSinArchivos
     } = solicitudConURLs;
 
-    const docRef = await addDoc(nulidadRef, solicitudSinArchivos);
+    const docRef = await addDoc(nulidadRef, {
+      ...solicitudSinArchivos,
+      idUsuario,
+      certificadoMatrimonioURL: certificadoMatrimonio,
+      certificadoBautismoURL: certificadoBautismo,
+      pruebasAdicionalesURL: pruebasAdicionales,
+    });
 
     const docSnap = await getDoc(docRef);
     const nulidadData = docSnap.data() as NulidadMatrimonial;
@@ -130,4 +136,15 @@ export const actualizarEstadoNulidad = async (
 ): Promise<void> => {
   const docRef = doc(nulidadRef, id);
   await updateDoc(docRef, { estado });
+};
+
+export const getNulidadMatrimonialByUserId = async (
+  idUsuario: string
+): Promise<NulidadMatrimonialDataResponse[] | null> => {
+  const q = query(nulidadRef, where("idUsuario", "==", idUsuario));
+  const querySnapshot = await getDocs(q);
+  const nulidadData = querySnapshot.docs.map(
+    (doc) => ({ ...doc.data(), id: doc.id } as NulidadMatrimonial)
+  );
+  return nulidadData.map(NulidadMatrimonialMapper.toResponse) || null;
 };

@@ -7,6 +7,7 @@ export class NulidadMatrimonialMapper {
   ): NulidadMatrimonialDataResponse {
     return {
       id: nulidad.id,
+      idUsuario: nulidad.idUsuario,
       nombre: nulidad.nombre,
       apellidos: nulidad.apellidos,
       fechaNacimiento: nulidad.fechaNacimiento,

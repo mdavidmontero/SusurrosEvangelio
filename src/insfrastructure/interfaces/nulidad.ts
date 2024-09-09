@@ -1,5 +1,6 @@
 export interface NulidadMatrimonialDataResponse {
   id: string;
+  idUsuario: string;
   nombre: string;
   apellidos: string;
   fechaNacimiento: Date;
@@ -8,7 +9,6 @@ export interface NulidadMatrimonialDataResponse {
   lugarMatrimonio: string;
   nombreSacerdoteCelebrante: string;
   duracionConvivencia: string;
-
   motivoPrincipal: string;
   descripcionMotivo: string;
   certificadoMatrimonioURL: File | null;

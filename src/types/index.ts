@@ -1,7 +1,6 @@
-// iniciar valores
-
 export const NulidadMatrimonialInitialValues = {
   id: "",
+  idUsuario: "",
   nombre: "",
   apellidos: "",
   fechaNacimiento: new Date(),
@@ -27,4 +26,11 @@ export const CitacionInitialValues = {
   hora: new Date(),
   lugar: "",
   responsable: "",
+};
+
+export const iglesiaVirtualInitialValues = {
+  id: "",
+  meetLink: "",
+  hora: new Date(),
+  fecha: new Date(),
 };

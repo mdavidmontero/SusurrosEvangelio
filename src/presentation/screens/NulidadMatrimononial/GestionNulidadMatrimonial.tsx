@@ -8,9 +8,6 @@ import { RootStackParams } from "../../navigation/AdminNavigator";
 import { Picker } from "@react-native-picker/picker";
 import { getNulidadMatrimonial } from "../../../actions/nulidad.actions";
 
-interface Props
-  extends StackScreenProps<RootStackParams, "GestionNulidadMatrimonial"> {}
-
 export default function GestionNulidadMatrimonial() {
   const { top } = useSafeAreaInsets();
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();

@@ -60,9 +60,7 @@ const UserChatScreen: React.FC = () => {
     <View
       style={{ width: width * 0.5 }}
       className={`mb-2 p-2 mx-2 rounded-lg ${
-        item.uid === currentUserUid?.id
-          ? "bg-bgcolorsChat self-end"
-          : "bg-gray-300"
+        item.uid === currentUserUid?.id ? "bg-primary self-end" : "bg-gray-200"
       }`}
     >
       <Text
@@ -72,7 +70,7 @@ const UserChatScreen: React.FC = () => {
       >
         {item.message}
       </Text>
-      <Text className="text-xs text-gray-400 text-right">
+      <Text className="text-xs text-right text-gray-500">
         {new Date(item.timestamp).toLocaleString()}
       </Text>
     </View>
@@ -87,7 +85,7 @@ const UserChatScreen: React.FC = () => {
       />
       <View className="flex-row items-center mt-4">
         <TextInput
-          className="flex-1 border border-gray-300 rounded-lg p-2 mr-2"
+          className="flex-1 p-2 mr-2 border border-gray-300 rounded-lg"
           multiline={true}
           style={{ width: width * 0.5, height: 46 }}
           value={text}
@@ -96,7 +94,7 @@ const UserChatScreen: React.FC = () => {
         />
         <Button
           mode="contained"
-          className="rounded bg-blue-500"
+          className="rounded bg-primary" // Ensured button color matches app theme
           onPress={handleSend}
         >
           Enviar

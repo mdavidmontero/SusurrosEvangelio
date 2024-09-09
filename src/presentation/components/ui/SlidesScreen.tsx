@@ -60,7 +60,6 @@ export const SlidesScreen = () => {
 
   const handleFinish = async () => {
     const data = await AsyncStorage.setItem("isFirstLaunch", "true");
-    console.log(data);
     navigation.goBack();
   };
 

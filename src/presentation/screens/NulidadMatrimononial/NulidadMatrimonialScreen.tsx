@@ -15,14 +15,20 @@ import * as DocumentPicker from "expo-document-picker";
 import { NulidadMatrimonial } from "../../../domain/entities/nulidad.entities";
 import { enviarSolicitudNulidad } from "../../../actions/nulidad.actions";
 import { NulidadMatrimonialInitialValues } from "../../../types";
+import { useAuthStore } from "../../store/useAuthStore";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParams } from "../../navigation/UserNavigation";
+import { useNavigation } from "@react-navigation/native";
 
 export default function NulidadMatrimonialScreen() {
+  const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
   const [consentimiento, setConsentimiento] = useState(false);
   const [nulidad, setNulidad] = useState<NulidadMatrimonial>(
     NulidadMatrimonialInitialValues
   );
+  const { user } = useAuthStore();
 
   const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     const currentDate = selectedDate || date;
@@ -65,10 +71,9 @@ export default function NulidadMatrimonialScreen() {
         ...nulidad,
         consentimiento: consentimiento,
       };
-      const envio = await enviarSolicitudNulidad(nulidadToSubmit);
+      const envio = await enviarSolicitudNulidad(nulidadToSubmit, user?.id!);
       if (envio) {
         setNulidad(NulidadMatrimonialInitialValues);
-        console.log("Solicitud enviada con éxito");
       }
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);
@@ -77,6 +82,15 @@ export default function NulidadMatrimonialScreen() {
 
   return (
     <ScrollView className="flex-1 p-4">
+      <View>
+        <Button
+          mode="contained"
+          className=" bg-primary"
+          onPress={() => navigation.navigate("DetalleNulidadUser")}
+        >
+          Ver Detalle
+        </Button>
+      </View>
       <Text className="mb-6 text-2xl font-bold text-center text-primary">
         Nulidad Matrimonial
       </Text>

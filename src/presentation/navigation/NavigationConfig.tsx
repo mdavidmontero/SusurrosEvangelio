@@ -8,6 +8,7 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import { EvangelizacionScreen } from "../screens/Evangelizacion/EvangelizacionScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -59,7 +60,7 @@ export function BotonUserNavigator() {
             <Entypo name="link" size={22} color="white" />
           ),
         }}
-        component={EnlaceScreen}
+        component={EvangelizacionScreen}
       />
       <Tab.Screen
         name="Conocenos"
