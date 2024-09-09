@@ -6,6 +6,7 @@ import {
   UserCredential,
   onAuthStateChanged,
   User,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { RolUsuario, UserRegisro } from "../domain/entities/user";
 import { crearUsuario } from "./user.action";
@@ -60,6 +61,15 @@ export const login = async (
       throw new Error("El correo electrónico ya está en uso.");
     }
     throw error;
+  }
+};
+export const resetPassword = async (email: string): Promise<void> => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+  } catch (error: any) {
+    throw new Error(
+      "Error al enviar el correo de restablecimiento: " + error.message
+    );
   }
 };
 

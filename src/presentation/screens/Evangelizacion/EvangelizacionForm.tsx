@@ -47,9 +47,7 @@ const EvangelizacionForm = () => {
       };
 
       await crearEvangelizacion(datos);
-      console.log("Datos enviados:", datos);
     } else {
-      console.log("No se ha seleccionado ninguna imagen.");
     }
   };
 

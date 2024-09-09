@@ -106,7 +106,18 @@ function AdminNavigator() {
         component={IglesiaVirtualScreen}
       />
       <Stack.Screen name="SlidesScreen" component={SlidesScreen} />
-      <Stack.Screen name="EvangelizacionForm" component={EvangelizacionForm} />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: "#592C00",
+          },
+          headerTintColor: "#fff",
+        }}
+        name="EvangelizacionForm"
+        component={EvangelizacionForm}
+      />
       <Stack.Screen
         options={{
           headerShown: true,

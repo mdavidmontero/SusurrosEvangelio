@@ -61,8 +61,8 @@ const AdminChatScreen: React.FC<{ route: any }> = ({ route }) => {
       style={{ width: width * 0.5 }}
       className={`mb-2 p-2 rounded-xl ${
         item.uid === adminUid?.id
-          ? "bg-bgcolorsChat self-end"
-          : "bg-gray-300 self-start"
+          ? "bg-primary self-end" // Updated color to match app theme
+          : "bg-gray-200 self-start" // Updated color to match app theme
       }`}
     >
       <Text
@@ -74,7 +74,9 @@ const AdminChatScreen: React.FC<{ route: any }> = ({ route }) => {
       >
         {item.message}
       </Text>
-      <Text className="text-xs text-gray-400 text-right">
+      <Text className="text-xs text-right text-gray-500">
+        {" "}
+        {/* Updated text color */}
         {new Date(item.timestamp).toLocaleString()}
       </Text>
     </View>
@@ -93,7 +95,7 @@ const AdminChatScreen: React.FC<{ route: any }> = ({ route }) => {
       />
       <View className="flex-row items-center mt-4">
         <TextInput
-          className="flex-1 border border-gray-300 rounded-lg p-2 mr-2"
+          className="flex-1 p-2 mr-2 border border-gray-300 rounded-lg"
           value={text}
           onChangeText={setText}
           placeholder="Escribe un mensaje..."
@@ -101,7 +103,7 @@ const AdminChatScreen: React.FC<{ route: any }> = ({ route }) => {
         />
         <Button
           mode="contained"
-          className="bg-blue-600 rounded-md"
+          className="rounded-md bg-primary" // Ensured button color matches app theme
           onPress={handleSend}
         >
           Enviar

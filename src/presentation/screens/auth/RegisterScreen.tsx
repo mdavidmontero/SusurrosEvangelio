@@ -44,7 +44,6 @@ export const RegisterScreen = () => {
       user.roles
     );
     if (wasSucessfull) {
-      console.log("oki register");
       navigation.navigate("LoginScreen");
       return;
     }

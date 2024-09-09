@@ -86,9 +86,15 @@ export const LoginScreen = () => {
             }}
           />
         </View>
-        <Text className="mb-4 text-gray-500 underline">
-          Olvidaste tu Contraseña
-        </Text>
+
+        <Button
+          onPress={() => navigation.navigate("ResetPassword")}
+          mode="text"
+          textColor="#7E1710"
+          className="w-1/2 mb-8 underline "
+        >
+          Restablecer Contraseña
+        </Button>
         <Button
           onPress={handleSubmit}
           mode="contained"
@@ -97,7 +103,7 @@ export const LoginScreen = () => {
         >
           Iniciar Sesión
         </Button>
-        <View className="flex-col items-center justify-center mt-6">
+        {/* <View className="flex-col items-center justify-center mt-6">
           <Text className="mb-4 italic">Regístrate con</Text>
           <View className="flex-row space-x-8">
             <FontAwesome name="google-plus-circle" size={50} color="#7E1710" />
@@ -116,7 +122,7 @@ export const LoginScreen = () => {
             />
             <Entypo name="facebook-with-circle" size={50} color="#7E1710" />
           </View>
-        </View>
+        </View> */}
       </View>
     </ScrollView>
   );

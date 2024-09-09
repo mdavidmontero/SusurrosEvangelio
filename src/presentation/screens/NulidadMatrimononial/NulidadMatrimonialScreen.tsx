@@ -74,7 +74,6 @@ export default function NulidadMatrimonialScreen() {
       const envio = await enviarSolicitudNulidad(nulidadToSubmit, user?.id!);
       if (envio) {
         setNulidad(NulidadMatrimonialInitialValues);
-        console.log("Solicitud enviada con éxito");
       }
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);

@@ -32,15 +32,15 @@ export default function SuscripcionForm() {
   const updateDatosDonacion = async () => {
     try {
       if (donacion.id) {
-        const donar = await updateDonacion(donacion);
-        console.log(donar);
+        await updateDonacion(donacion);
+
         Alert.alert(
           "Donación actualizada",
           "La donación se ha actualizado correctamente"
         );
       } else {
-        const donar = await crearDonacion(donacion);
-        console.log(donar);
+        await crearDonacion(donacion);
+
         Alert.alert(
           "Donación creada",
           "La donación se ha creado correctamente"
