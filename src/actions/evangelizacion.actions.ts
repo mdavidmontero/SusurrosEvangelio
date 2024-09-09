@@ -74,6 +74,23 @@ export const crearEvangelizacion = async (
     throw new Error(`Error al crear la evangelización: ${error}`);
   }
 };
+export const getEvangelizacionesAll = async (): Promise<
+  EvangelizacionData[]
+> => {
+  try {
+    const querySnapshot = await getDocs(evangelizacionRef);
+    const evangelizaciones = querySnapshot.docs
+      .map((doc) => doc.data() as EvangelizacionData)
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      )
+      .slice(0, 10);
+    return evangelizaciones;
+  } catch (error) {
+    throw new Error(`Error al obtener las evangelizaciones: ${error}`);
+  }
+};
 
 export const getEvangelizacionById = async (
   id: string
