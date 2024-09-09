@@ -27,9 +27,9 @@ export const LoginScreen = () => {
       Alert.alert("Error", "Todos los campos son obligatorios");
       return;
     }
-    const wasSuccessful = await login(user.correo, user.password);
     setisPosting(true);
     try {
+      const wasSuccessful = await login(user.correo, user.password);
       if (wasSuccessful) {
         const user = await obtenerUsuarioPorId(wasSuccessful);
         if (user) {
@@ -38,10 +38,11 @@ export const LoginScreen = () => {
           Alert.alert("Error", "No se encontró el usuario.");
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       Alert.alert(
         "Error",
-        "Credenciales incorrectas. Por favor, verifica tus datos e intenta de nuevo."
+        error.message ||
+          "Credenciales incorrectas. Por favor, verifica tus datos e intenta de nuevo."
       );
     }
     setisPosting(false);
