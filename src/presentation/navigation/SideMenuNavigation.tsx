@@ -84,10 +84,10 @@ export const SideMenuNavigator = () => {
         }}
       />
       <Drawer.Screen
-        name="SuscripcionScreen"
+        name="DonacionesScreen"
         component={SuscripcionScreen}
         options={{
-          drawerLabel: "Suscripcion",
+          drawerLabel: "Donaciones",
           drawerIcon: () => (
             <MaterialIcons name="payment" size={22} color="#cd99ae" />
           ),

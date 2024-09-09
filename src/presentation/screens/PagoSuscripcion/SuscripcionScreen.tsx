@@ -1,29 +1,46 @@
-import { View, Text, Linking, Button } from "react-native";
-import { useEffect } from "react";
-import { TextInput } from "react-native-paper";
+import { View, Text, Linking } from "react-native";
+import { useEffect, useState } from "react";
+import { Button } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParams } from "../../navigation/AdminNavigator";
+import { useAuthStore } from "../../store/useAuthStore";
+import { subscribeToDonaciones } from "../../../actions/donaciones.actions"; // Updated to use real-time subscription
+import { Donaciones } from "../../../domain/entities/donaciones";
 
 export default function SuscripcionScreen() {
-  const paymentUrl = "https://mpago.li/1xw8ZN5"; // Replace with your actual payment link
+  const { user } = useAuthStore();
+  const [donacion, setDonacion] = useState<Donaciones>();
+
+  const navigation =
+    useNavigation<StackNavigationProp<RootStackParams, "SuscripcionForm">>();
 
   const handlePayment = async () => {
-    const supported = await Linking.canOpenURL(paymentUrl);
+    const supported = await Linking.canOpenURL(donacion?.linkPago!);
     if (supported) {
-      await Linking.openURL(paymentUrl);
+      await Linking.openURL(donacion?.linkPago!);
     } else {
-      console.log("Don't know how to open URI: " + paymentUrl);
+      console.log("No se puede abrir la URI: " + donacion?.linkPago);
     }
   };
 
   useEffect(() => {
-    const handleBack = () => {
-      // TODO: Verificar pago
-      // TODO: Si pago es exitoso, mostrar mensaje de confirmacion y actualizar estado de la suscripcion
-      // TODO: Si pago es fallido, mostrar mensaje de error
+    const unsubscribe = subscribeToDonaciones((donaciones) => {
+      if (donaciones.length > 0) {
+        setDonacion(donaciones[0]);
+      }
+    });
 
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleBack = () => {
       alert("Pago realizado correctamente");
     };
 
-    // Add event listener for app coming back from the payment page
     const subscription = Linking.addEventListener("url", handleBack);
 
     return () => {
@@ -32,16 +49,44 @@ export default function SuscripcionScreen() {
   }, []);
 
   return (
-    <View className="items-center justify-center flex-1">
-      <Text className="text-2xl font-bold text-center text-primary">
-        Donación parroquia Tres Avemarías.
+    <View className="items-center justify-center flex-1 p-5 bg-gray-50">
+      <Text className="mb-4 text-4xl italic font-extrabold text-center text-primary">
+        Donaciones
       </Text>
-      <Text className="text-lg text-center">
-        Al presionar el boton de pago, sera redirigido a la pagina de pago
+      <Text className="mb-4 text-lg italic text-center ">
+        Ayúdanos a seguir adelante con nuestras actividades, con tu donación
+        apoyamos a la iglesia.
       </Text>
-      <Text>Valor: </Text>
-      <Text className="text-2xl font-bold">20.000 COP</Text>
-      <Button title="Pagar" onPress={handlePayment} />
+      <Text className="mb-6 text-base italic text-center text-gray-800">
+        Al presionar el botón de pago, serás redirigido a la página de pago.
+      </Text>
+      <Text className="mb-2 text-xl italic font-semibold text-primary">
+        Valor
+      </Text>
+      <Text className="mb-6 text-xl italic font-bold text-gray-900">
+        {donacion?.valor} COP
+      </Text>
+      <Button
+        mode="contained"
+        className="w-full rounded-lg shadow-md bg-primary"
+        onPress={handlePayment}
+      >
+        Pagar
+      </Button>
+      {user?.roles === "ADMIN" && (
+        <>
+          <Button
+            mode="contained"
+            className="w-full mt-4 rounded-lg shadow-md bg-primary"
+            onPress={() => navigation.navigate("SuscripcionForm")}
+          >
+            Modificar Donación
+          </Button>
+          <Text className="mt-6 text-lg italic text-center">
+            O presiona el botón para modificar los datos de la donación.
+          </Text>
+        </>
+      )}
     </View>
   );
 }

@@ -14,6 +14,7 @@ import { SlidesScreen } from "../components/ui/SlidesScreen";
 import DetalleNulidadUser from "../screens/NulidadMatrimononial/DetalleNulidadUser";
 import SuscripcionScreen from "../screens/PagoSuscripcion/SuscripcionScreen";
 import EvangelizacionForm from "../screens/Evangelizacion/EvangelizacionForm";
+import SuscripcionForm from "../screens/PagoSuscripcion/SuscripcionForm";
 
 export type RootStackParams = {
   Home: undefined;
@@ -30,6 +31,7 @@ export type RootStackParams = {
   DetalleNulidadUser: undefined;
   SuscripcionScreen: undefined;
   EvangelizacionForm: undefined;
+  SuscripcionForm: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -48,7 +50,7 @@ function UserNavigator() {
       <Stack.Screen
         options={{
           headerShown: true,
-          headerTitle: "Evangelización",
+          headerTitle: "",
           headerStyle: {
             backgroundColor: "#592C00",
           },
@@ -119,6 +121,14 @@ function UserNavigator() {
       />
       <Stack.Screen
         name="IglesiaVirtualScreen"
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: "#592C00",
+          },
+          headerTintColor: "#fff",
+        }}
         component={IglesiaVirtualScreen}
       />
       <Stack.Screen name="UbicacionScreen" component={UbicacionScreen} />
@@ -126,6 +136,7 @@ function UserNavigator() {
       <Stack.Screen name="DetalleNulidadUser" component={DetalleNulidadUser} />
       <Stack.Screen name="SuscripcionScreen" component={SuscripcionScreen} />
       <Stack.Screen name="EvangelizacionForm" component={EvangelizacionForm} />
+      <Stack.Screen name="SuscripcionForm" component={SuscripcionForm} />
     </Stack.Navigator>
   );
 }

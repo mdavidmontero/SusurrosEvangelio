@@ -13,7 +13,7 @@ import { Button } from "react-native-paper";
 import { useState } from "react";
 import { getLinksOne, updateLink } from "../../../actions/iglesia.actions";
 import { useAuthStore } from "../../store/useAuthStore";
-import { formatFecha, formatHora, services } from "../../../utils/index";
+import { services } from "../../../utils/index";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { IglesiaVirtual } from "../../../domain/entities/virtual";
 import { iglesiaVirtualInitialValues } from "../../../types/index";
@@ -39,7 +39,6 @@ export default function IglesiaVirtualScreen() {
     getLinks();
   }, []);
 
-  // Convertir Timestamp a Date si es necesario
   const fechaDate =
     virtual.fecha instanceof Timestamp
       ? virtual.fecha.toDate()
@@ -71,12 +70,12 @@ export default function IglesiaVirtualScreen() {
   };
 
   return (
-    <ScrollView className="pt-4" style={{ paddingTop: top }}>
-      <Text className="w-full p-4 text-xl italic font-bold text-center text-white bg-primary">
-        Iglesia Virtual
-      </Text>
-      <View className="flex-1 p-4">
-        <Text className="mb-3 text-base leading-6">
+    <ScrollView style={{ backgroundColor: "#f9f9f9" }}>
+      <View className="flex-1 p-6">
+        <Text className="mb-4 text-2xl italic font-extrabold text-center text-primary">
+          Iglesia Virtual
+        </Text>
+        <Text className="mb-5 text-base leading-7 text-justify text-gray-800">
           Una Iglesia Virtual es un espacio digital donde las personas pueden
           reunirse para orar, compartir su fe y participar en variados temas,
           sin importar su ubicación física. A través de la tecnología, la
@@ -84,21 +83,21 @@ export default function IglesiaVirtualScreen() {
           un lugar de encuentro con Dios, en comunidad y con acceso a todos los
           recursos espirituales que necesitan.
         </Text>
-        <Text className="mb-4 text-lg font-semibold text-primary">
+        <Text className="mb-4 text-base font-semibold text-center text-primary">
           Servicios que prestaría la Iglesia Virtual:
         </Text>
         {services.map((service, index) => (
-          <Text key={index} className="mb-2">
+          <Text key={index} className="mb-3 text-base text-gray-700">
             • <Text className="font-bold">{service.title}:</Text>{" "}
             {service.description}
           </Text>
         ))}
 
-        <Text className="mb-3 text-lg font-bold text-center text-primary">
+        <Text className="mb-4 text-base font-bold text-center text-primary">
           Detalles de la reunión:
         </Text>
 
-        <Text className="mb-3 text-base font-bold text-primary">
+        <Text className="mb-2 text-base font-bold text-primary">
           Fecha de la reunión:
         </Text>
         {user?.roles === "CLIENTE" && (
@@ -108,7 +107,7 @@ export default function IglesiaVirtualScreen() {
         )}
         {user?.roles === "ADMIN" && (
           <TouchableOpacity
-            className="px-6 py-3 mb-4 bg-white border border-gray-300 rounded-lg shadow-md"
+            className="px-6 py-4 mb-4 bg-white border border-gray-300 rounded-lg shadow-lg"
             onPress={() => setShowDatePicker(true)}
           >
             <Text className="font-bold text-center text-black">
@@ -119,7 +118,7 @@ export default function IglesiaVirtualScreen() {
           </TouchableOpacity>
         )}
 
-        <Text className="mb-3 text-base font-bold text-primary">
+        <Text className="mb-2 text-base font-bold text-primary">
           Hora de la reunión:
         </Text>
         {user?.roles === "CLIENTE" && (
@@ -129,7 +128,7 @@ export default function IglesiaVirtualScreen() {
         )}
         {user?.roles === "ADMIN" && (
           <TouchableOpacity
-            className="px-6 py-3 mb-4 bg-white border border-gray-300 rounded-lg shadow-md"
+            className="px-6 py-4 mb-4 bg-white border border-gray-300 rounded-lg shadow-lg"
             onPress={() => setShowTimePicker(true)}
           >
             <Text className="font-bold text-center text-black">
@@ -164,7 +163,7 @@ export default function IglesiaVirtualScreen() {
         )}
 
         <TextInput
-          className="p-3 mb-4 bg-white border border-gray-300 rounded"
+          className="p-4 mb-4 bg-white border border-gray-300 rounded-lg shadow-sm"
           placeholder="Ingrese el enlace de la reunión"
           value={virtual.meetLink}
           editable={user?.roles === "ADMIN"}
@@ -186,7 +185,7 @@ export default function IglesiaVirtualScreen() {
             textColor="white"
             mode="contained"
             onPress={handleJoinMeeting}
-            className=" bg-primary"
+            className="bg-primary"
           >
             Unirse a la Reunión
           </Button>
