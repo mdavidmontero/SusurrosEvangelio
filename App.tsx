@@ -5,6 +5,7 @@ import MainNavigator from "./src/presentation/navigation/MainNavigation";
 import { AuthProvider } from "./src/presentation/provider/AuthProvider";
 import { QueryClient, QueryClientProvider } from "react-query";
 const queryClient = new QueryClient();
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>

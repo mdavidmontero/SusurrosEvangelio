@@ -35,20 +35,25 @@ export const RegisterScreen = () => {
       Alert.alert("Error", "Todos los campos son obligatorios");
       return;
     }
-    const wasSucessfull = await registerUser(
-      user.nombre,
-      user.apellidos,
-      user.telefono,
-      user.correo,
-      user.password,
-      user.roles
-    );
-    if (wasSucessfull) {
-      navigation.navigate("LoginScreen");
-      return;
+    setLoading(true);
+    try {
+      const wasSucessfull = await registerUser(
+        user.nombre,
+        user.apellidos,
+        user.telefono,
+        user.correo,
+        user.password,
+        user.roles
+      );
+      if (wasSucessfull) {
+        navigation.navigate("LoginScreen");
+        return;
+      }
+    } catch (error: any) {
+      Alert.alert("Error", error.message || "Error al crear el usuario");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
-    Alert.alert("Error", "Error al crear el usuario");
   };
   return (
     <ScrollView className="flex-1 p-6 bg-white">
