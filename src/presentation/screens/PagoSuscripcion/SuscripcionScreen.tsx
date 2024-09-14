@@ -63,12 +63,13 @@ export default function SuscripcionScreen() {
       <Text className="mb-2 text-xl italic font-semibold text-primary">
         Valor
       </Text>
-      <Text className="mb-6 text-xl italic font-bold text-gray-900">
-        {donacion?.valor} COP
+      <Text className="mb-2 text-lg italic">
+        Donaciones a partir de {donacion?.valor} COP
       </Text>
+
       <Button
         mode="contained"
-        className="w-full rounded-lg shadow-md bg-primary"
+        className="w-full text-white rounded-lg shadow-md bg-primary"
         onPress={handlePayment}
       >
         Pagar
@@ -77,7 +78,7 @@ export default function SuscripcionScreen() {
         <>
           <Button
             mode="contained"
-            className="w-full mt-4 rounded-lg shadow-md bg-primary"
+            className="w-full mt-4 text-white rounded-lg shadow-md bg-primary"
             onPress={() => navigation.navigate("SuscripcionForm")}
           >
             Modificar Donación
