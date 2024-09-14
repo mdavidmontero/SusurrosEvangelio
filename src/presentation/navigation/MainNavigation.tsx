@@ -7,6 +7,7 @@ import AdminNavigator from "./AdminNavigator";
 const Stack = createStackNavigator();
 const MainNavigator = () => {
   const { user } = useAuthStore();
+
   return (
     <Stack.Navigator>
       {user?.roles === "ADMIN" ? (

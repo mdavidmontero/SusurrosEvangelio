@@ -22,60 +22,58 @@ export const HomeScreen = () => {
   }, []);
 
   return (
-    // Todo: Agregar imagenes de diseño y cambiar color de letra
-    // Todo: Crear un componente reutilizable para el boton
-    <View className="items-center justify-center flex-1 px-5 gap-7">
+    <View className="items-center justify-center flex-1 gap-4 px-5">
       <TouchableOpacity
-        className="w-64 h-24 p-0 overflow-hidden border rounded-3xl border-1"
+        className="w-56 h-20 p-0 overflow-hidden bg-gray-100 border border-gray-300 rounded-full"
         onPress={() => navigation.navigate("EvangelizacionScreen")}
       >
         <ImageBackground
-          source={require("../../../../assets/slide-1.png")}
+          source={require("../../../../assets/boton-1.jpg")}
           className="items-center justify-center flex-1"
-          resizeMode="cover"
-        >
-          <Text className="text-lg font-bold text-black">Evangelización</Text>
-        </ImageBackground>
+          resizeMode="contain"
+        ></ImageBackground>
+        <Text className="text-lg italic font-bold text-center">
+          Evangelización
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        className="w-64 h-24 p-0 overflow-hidden border rounded-3xl border-1"
+        className="w-56 h-20 p-0 overflow-hidden bg-gray-100 border border-gray-300 rounded-full"
         onPress={() => navigation.navigate("IglesiaVirtualScreen")}
       >
         <ImageBackground
-          source={require("../../../../assets/slide-2.png")}
+          source={require("../../../../assets/boton-2.jpg")}
           className="items-center justify-center flex-1"
-          resizeMode="cover"
-        >
-          <Text className="text-lg font-bold text-black">Iglesia Virtual</Text>
-        </ImageBackground>
+          resizeMode="contain"
+        ></ImageBackground>
+        <Text className="text-lg italic font-bold text-center">
+          Iglesia Virtual
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        className="w-64 h-24 p-0 overflow-hidden border rounded-3xl border-1"
+        className="w-56 h-20 p-0 overflow-hidden bg-gray-100 border border-gray-300 rounded-full"
         onPress={() => navigation.navigate("GestionNulidadMatrimonial")}
       >
         <ImageBackground
-          source={require("../../../../assets/slide-3.png")}
+          source={require("../../../../assets/boton-3.jpg")}
           className="items-center justify-center flex-1"
-          resizeMode="cover"
-        >
-          <Text className="text-lg font-bold text-black">
-            Nulidad matrimonial
-          </Text>
-        </ImageBackground>
+          resizeMode="contain"
+        ></ImageBackground>
+        <Text className="text-lg italic font-bold text-center">
+          Nulidad matrimonial
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        className="w-64 h-24 p-0 overflow-hidden border rounded-3xl border-1"
+        className="w-56 h-20 p-0 overflow-hidden bg-gray-100 border border-gray-300 rounded-full"
         onPress={() => navigation.navigate("PastoralEscuchaScreen")}
       >
         <ImageBackground
-          source={require("../../../../assets/slide-1.png")}
+          source={require("../../../../assets/boton-1.jpg")}
           className="items-center justify-center flex-1"
-          resizeMode="cover"
-        >
-          <Text className="text-lg font-bold text-black">
-            Temas de citación
-          </Text>
-        </ImageBackground>
+          resizeMode="contain"
+        ></ImageBackground>
+        <Text className="text-lg italic font-bold text-center ">
+          Temas de citación
+        </Text>
       </TouchableOpacity>
     </View>
   );

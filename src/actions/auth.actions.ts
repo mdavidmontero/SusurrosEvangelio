@@ -38,8 +38,12 @@ export const registerUser = async (
     await crearUsuario(usuario);
     return userCredential.user.uid;
   } catch (error: any) {
+    console.log(error);
     if (error.code === "auth/email-already-in-use") {
       throw new Error("El correo electrónico ya está en uso.");
+    }
+    if (error.code === "auth/weak-password") {
+      throw new Error("La contraseña debe tener al menos 6 caracteres.");
     }
     throw error;
   }
@@ -57,9 +61,10 @@ export const login = async (
     );
     return userCredential.user.uid;
   } catch (error: any) {
-    if (error.code === "auth/email-already-in-use") {
-      throw new Error("El correo electrónico ya está en uso.");
+    if (error.code == "auth/invalid-credential") {
+      throw new Error("El correo electrónico o contraseña no son válidos.");
     }
+
     throw error;
   }
 };
