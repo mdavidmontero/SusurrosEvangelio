@@ -177,12 +177,13 @@ export default function IglesiaVirtualScreen() {
               mode="contained"
               onPress={handleSave}
               className="mb-3 bg-primary"
+              textColor="#FFFFFF"
             >
               Guardar Enlace
             </Button>
           )}
           <Button
-            textColor="white"
+            textColor="#FFFFFF"
             mode="contained"
             onPress={handleJoinMeeting}
             className="bg-primary"

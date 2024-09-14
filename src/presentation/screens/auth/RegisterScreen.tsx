@@ -124,6 +124,7 @@ export const RegisterScreen = () => {
           onPress={handleChange}
           disabled={loading}
           mode="contained"
+          textColor="#FFFFFF"
           className="w-1/2 mb-8 bg-primary"
         >
           Registrar

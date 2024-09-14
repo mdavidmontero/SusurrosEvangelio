@@ -99,6 +99,7 @@ export const LoginScreen = () => {
         <Button
           onPress={handleSubmit}
           mode="contained"
+          textColor="#FFFFFF"
           className="w-1/2 mb-8 bg-primary"
           disabled={isPosting}
         >

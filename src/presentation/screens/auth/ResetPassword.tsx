@@ -50,6 +50,7 @@ export default function ResetPassword() {
         <Button
           mode="contained"
           onPress={handleResetPassword}
+          textColor="#FFFFFF"
           className="w-full bg-primary"
         >
           Enviar correo de restablecimiento

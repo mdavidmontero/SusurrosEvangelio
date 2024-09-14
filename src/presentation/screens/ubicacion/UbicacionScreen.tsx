@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StackNavigationProp } from "@react-navigation/stack";
@@ -12,6 +18,11 @@ export default function UbicacionScreen() {
     longitude: -73.24797027690806,
   };
 
+  // const openInGoogleMaps = () => {
+  //   const url = `https://www.google.com/maps/dir/?api=1&destination=${churchLocation.latitude},${churchLocation.longitude}`;
+  //   Linking.openURL(url);
+  // };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -24,7 +35,10 @@ export default function UbicacionScreen() {
       <Text style={styles.address}>
         Dirección: Cl. 16b #1162, Valledupar, Cesar
       </Text>
-      <MapView
+      {/* <TouchableOpacity style={styles.mapButton} onPress={openInGoogleMaps}>
+        <Text style={styles.mapButtonText}>Ver en Google Maps</Text>
+      </TouchableOpacity> */}
+      {/* <MapView
         style={styles.map}
         initialRegion={{
           ...churchLocation,
@@ -33,7 +47,7 @@ export default function UbicacionScreen() {
         }}
       >
         <Marker coordinate={churchLocation} title={"Iglesia"} />
-      </MapView>
+      </MapView> */}
     </View>
   );
 }
@@ -55,6 +69,17 @@ const styles = StyleSheet.create({
   address: {
     fontSize: 16,
     marginBottom: 16,
+  },
+  mapButton: {
+    backgroundColor: "#592C00",
+    padding: 10,
+    borderRadius: 5,
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  mapButtonText: {
+    color: "#ffffff",
+    fontSize: 16,
   },
   map: {
     flex: 1,

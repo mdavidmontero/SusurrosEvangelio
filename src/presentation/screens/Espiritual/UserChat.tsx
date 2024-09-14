@@ -94,6 +94,7 @@ const UserChatScreen: React.FC = () => {
         />
         <Button
           mode="contained"
+          textColor="#FFFFFF"
           className="rounded bg-primary" // Ensured button color matches app theme
           onPress={handleSend}
         >

@@ -168,6 +168,7 @@ const EvangelizacionForm = () => {
 
       <Button
         mode="contained"
+        textColor="#FFFFFF"
         className="mb-10 text-white bg-primary"
         onPress={handleSubmit}
       >
