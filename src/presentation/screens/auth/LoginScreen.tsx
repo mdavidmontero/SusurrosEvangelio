@@ -71,6 +71,7 @@ export const LoginScreen = () => {
             placeholderTextColor="gray"
             className="mb-6 bg-white border border-gray-300 rounded-3xl"
             placeholder="Gmail"
+            textColor="#000000"
             onChangeText={(text) => {
               setUser({ ...user, correo: text });
             }}
@@ -81,6 +82,7 @@ export const LoginScreen = () => {
             placeholderTextColor="gray"
             secureTextEntry
             placeholder="Contraseña"
+            textColor="#000000"
             className="mb-6 bg-white border border-gray-300 rounded-3xl"
             onChangeText={(text) => {
               setUser({ ...user, password: text });

@@ -68,6 +68,7 @@ const EvangelizacionForm = () => {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             mode="flat"
             className="h-10 bg-white border-2 rounded-3xl border-primary"
             value={data.tituloPalabraDelDia}
@@ -81,6 +82,7 @@ const EvangelizacionForm = () => {
               cursorColor="#592C00"
               underlineColor="transparent"
               activeUnderlineColor="transparent"
+              textColor="#000000"
               mode="flat"
               className="bg-white border-2 rounded-3xl border-primary"
               value={data.contenidoPalabraDelDia}
@@ -125,6 +127,7 @@ const EvangelizacionForm = () => {
               cursorColor="#592C00"
               underlineColor="transparent"
               activeUnderlineColor="transparent"
+              textColor="#000000"
               className="h-10 bg-white border-2 rounded-3xl border-primary"
               value={data.tituloReflexionDiaria}
               onChangeText={(titulo) =>
@@ -141,6 +144,7 @@ const EvangelizacionForm = () => {
               cursorColor="#592C00"
               underlineColor="transparent"
               activeUnderlineColor="transparent"
+              textColor="#000000"
               value={data.contenidoReflexionDiaria}
               onChangeText={(contenido) =>
                 setData({ ...data, contenidoReflexionDiaria: contenido })
@@ -157,6 +161,7 @@ const EvangelizacionForm = () => {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             value={data.videoUrlReflexionDiaria}
             onChangeText={(videoUrl) =>
               setData({ ...data, videoUrlReflexionDiaria: videoUrl })

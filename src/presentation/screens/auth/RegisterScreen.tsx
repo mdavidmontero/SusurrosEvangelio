@@ -68,6 +68,7 @@ export const RegisterScreen = () => {
             mode="flat"
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
+            textColor="#000000"
             className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="default"
             onChangeText={(text) => {
@@ -79,6 +80,7 @@ export const RegisterScreen = () => {
             mode="flat"
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
+            textColor="#000000"
             className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="default"
             onChangeText={(text) => {
@@ -90,6 +92,7 @@ export const RegisterScreen = () => {
             mode="flat"
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
+            textColor="#000000"
             className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="number-pad"
             onChangeText={(text) => {
@@ -101,6 +104,7 @@ export const RegisterScreen = () => {
             mode="flat"
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
+            textColor="#000000"
             className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="email-address"
             onChangeText={(text) => {
@@ -113,6 +117,7 @@ export const RegisterScreen = () => {
             underlineStyle={{ display: "none" }}
             placeholderTextColor="gray"
             secureTextEntry
+            textColor="#000000"
             className="mb-6 bg-white border border-gray-300 rounded-3xl h-11"
             keyboardType="default"
             onChangeText={(text) => {

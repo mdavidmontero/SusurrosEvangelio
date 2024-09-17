@@ -39,6 +39,7 @@ export default function ResetPassword() {
         mode="flat"
         placeholder="Correo electrónico"
         value={email}
+        textColor="#000000"
         underlineColor="transparent"
         activeUnderlineColor="transparent"
         cursorColor="gray"
