@@ -84,11 +84,9 @@ export default function NulidadMatrimonialDetailScreen() {
 
   return (
     <ScrollView className="flex-1 bg-gray-100" style={{ paddingTop: top }}>
-      <View className="justify-center p-4 bg-primary">
-        <Text className="text-2xl font-bold text-center text-white">
-          Detalle de Solicitud de Nulidad Matrimonial
-        </Text>
-      </View>
+      <Text className="text-2xl italic font-bold text-center text-primary">
+        Detalle de Solicitud de Nulidad Matrimonial
+      </Text>
       <View className="p-4 m-4 bg-white rounded-lg shadow-md">
         <Text className="mb-2 text-xl font-bold text-gray-800">{`${nulidadMatrimonial.nombre} ${nulidadMatrimonial.apellidos}`}</Text>
         <InfoItem

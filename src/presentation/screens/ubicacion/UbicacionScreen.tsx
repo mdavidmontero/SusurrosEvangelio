@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   backButton: {
-    marginBottom: 10, // Space between the button and title
+    marginBottom: 10,
   },
   title: {
     fontSize: 24,

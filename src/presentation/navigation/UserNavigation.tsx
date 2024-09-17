@@ -133,7 +133,18 @@ function UserNavigator() {
       />
       <Stack.Screen name="UbicacionScreen" component={UbicacionScreen} />
       <Stack.Screen name="SlidesScreen" component={SlidesScreen} />
-      <Stack.Screen name="DetalleNulidadUser" component={DetalleNulidadUser} />
+      <Stack.Screen
+        name="DetalleNulidadUser"
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: "#592C00",
+          },
+          headerTintColor: "#fff",
+        }}
+        component={DetalleNulidadUser}
+      />
       <Stack.Screen name="SuscripcionScreen" component={SuscripcionScreen} />
       <Stack.Screen name="EvangelizacionForm" component={EvangelizacionForm} />
       <Stack.Screen name="SuscripcionForm" component={SuscripcionForm} />

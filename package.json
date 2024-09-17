@@ -23,6 +23,7 @@
     "expo": "~51.0.28",
     "expo-document-picker": "~12.0.2",
     "expo-image-picker": "~15.0.7",
+    "expo-splash-screen": "~0.27.5",
     "expo-status-bar": "~1.12.1",
     "firebase": "^10.13.0",
     "nativewind": "^2.0.11",
@@ -36,9 +37,7 @@
     "react-native-screens": "3.31.1",
     "react-native-vector-icons": "^10.1.0",
     "react-native-webview": "13.8.6",
-    "react-query": "^3.39.3",
-    "zustand": "^4.5.5",
-    "expo-splash-screen": "~0.27.5"
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
