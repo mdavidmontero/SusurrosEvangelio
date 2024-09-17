@@ -149,7 +149,7 @@ export default function NulidadMatrimonialDetailScreen() {
           }
         />
         <DownloadButton
-          label="Pruebas Adicionales"
+          label="Formato Nulidad"
           icon="attach-outline"
           onPress={() =>
             handleDownload(nulidadMatrimonial.pruebasAdicionalesURL)
