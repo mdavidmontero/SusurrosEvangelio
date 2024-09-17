@@ -1,5 +1,10 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParams } from "../../navigation/UserNavigation";
@@ -7,9 +12,14 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function UbicacionScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
-  const churchLocation = {
-    latitude: 10.474053608077087,
-    longitude: -73.24797027690806,
+
+  const address = "Calle 16B N° 11-62 Barrio Loperena, Valledupar, Cesar";
+
+  const openInGoogleMaps = () => {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      address
+    )}`;
+    Linking.openURL(url);
   };
 
   return (
@@ -21,19 +31,10 @@ export default function UbicacionScreen() {
         <MaterialIcons name="arrow-back" size={24} color="#592C00" />
       </TouchableOpacity>
       <Text style={styles.title}>Ubicación</Text>
-      <Text style={styles.address}>
-        Dirección: Cl. 16b #1162, Valledupar, Cesar
-      </Text>
-      <MapView
-        style={styles.map}
-        initialRegion={{
-          ...churchLocation,
-          latitudeDelta: 0.005,
-          longitudeDelta: 0.005,
-        }}
-      >
-        <Marker coordinate={churchLocation} title={"Iglesia"} />
-      </MapView>
+      <Text style={styles.address}>Dirección: {address}</Text>
+      <TouchableOpacity style={styles.mapButton} onPress={openInGoogleMaps}>
+        <Text style={styles.mapButtonText}>Ver en Google Maps</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -56,8 +57,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 16,
   },
-  map: {
-    flex: 1,
-    borderRadius: 10,
+  mapButton: {
+    backgroundColor: "#592C00",
+    padding: 10,
+    borderRadius: 5,
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  mapButtonText: {
+    color: "#ffffff",
+    fontSize: 16,
   },
 });

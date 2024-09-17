@@ -103,6 +103,7 @@ const AdminChatScreen: React.FC<{ route: any }> = ({ route }) => {
         />
         <Button
           mode="contained"
+          textColor="#FFFFFF"
           className="rounded-md bg-primary" // Ensured button color matches app theme
           onPress={handleSend}
         >

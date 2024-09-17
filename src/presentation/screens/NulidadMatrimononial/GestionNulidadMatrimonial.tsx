@@ -7,6 +7,7 @@ import { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
 import { RootStackParams } from "../../navigation/AdminNavigator";
 import { Picker } from "@react-native-picker/picker";
 import { getNulidadMatrimonial } from "../../../actions/nulidad.actions";
+import { Ionicons } from "@expo/vector-icons"; // Importing Ionicons for the back icon
 
 export default function GestionNulidadMatrimonial() {
   const { top } = useSafeAreaInsets();
@@ -67,9 +68,14 @@ export default function GestionNulidadMatrimonial() {
 
   return (
     <View style={{ paddingTop: top }} className="flex-1 bg-gray-100">
-      <Text className="p-4 text-2xl font-bold text-center text-white bg-primary">
-        Solicitudes de Nulidad Matrimonial
-      </Text>
+      <View className="flex-row items-center p-4 bg-primary">
+        <TouchableOpacity onPress={() => navigation.goBack()} className="mr-2">
+          <Ionicons name="arrow-back" size={24} color="white" />
+        </TouchableOpacity>
+        <Text className="text-2xl font-bold text-center text-white">
+          Solicitudes de Nulidad Matrimonial
+        </Text>
+      </View>
       <View className="p-4 bg-white">
         <Text className="mb-2 text-base font-semibold text-gray-700">
           Filtrar

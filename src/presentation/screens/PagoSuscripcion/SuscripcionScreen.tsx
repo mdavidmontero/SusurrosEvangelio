@@ -69,6 +69,7 @@ export default function SuscripcionScreen() {
 
       <Button
         mode="contained"
+        textColor="#FFFFFF"
         className="w-full text-white rounded-lg shadow-md bg-primary"
         onPress={handlePayment}
       >
@@ -78,6 +79,7 @@ export default function SuscripcionScreen() {
         <>
           <Button
             mode="contained"
+            textColor="#FFFFFF"
             className="w-full mt-4 text-white rounded-lg shadow-md bg-primary"
             onPress={() => navigation.navigate("SuscripcionForm")}
           >
