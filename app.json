@@ -8,7 +8,8 @@
     "userInterfaceStyle": "light",
     "plugins": [
       "expo-document-picker",
-      "expo-image-picker"
+      "expo-image-picker",
+      "expo-asset"
     ],
     "splash": {
       "image": "./assets/images/splash.png",

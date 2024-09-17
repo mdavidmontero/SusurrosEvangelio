@@ -71,6 +71,14 @@ function AdminNavigator() {
       <Stack.Screen name="GestionNulidadMatrimonial" component={HomeNulidad} />
       <Stack.Screen
         name="DetalleNulidadMatrimonial"
+        options={{
+          headerShown: true,
+          headerTitle: "",
+          headerStyle: {
+            backgroundColor: "#592C00",
+          },
+          headerTintColor: "#fff",
+        }}
         component={NulidadMatrimonialDetailScreen}
       />
       <Stack.Screen

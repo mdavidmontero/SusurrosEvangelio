@@ -5,6 +5,7 @@ import {
   ScrollView,
   Platform,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import RNDateTimePicker, {
@@ -19,6 +20,9 @@ import { useAuthStore } from "../../store/useAuthStore";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParams } from "../../navigation/UserNavigation";
 import { useNavigation } from "@react-navigation/native";
+import * as FileSystem from "expo-file-system";
+import { Asset } from "expo-asset";
+import * as Sharing from "expo-sharing";
 
 export default function NulidadMatrimonialScreen() {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
@@ -79,6 +83,31 @@ export default function NulidadMatrimonialScreen() {
       console.error("Error al enviar la solicitud:", error);
     }
   };
+  const saveFile = async () => {
+    try {
+      const asset = Asset.fromModule(
+        require("../../../../assets/FORMATONULIDAD.pdf")
+      );
+      await asset.downloadAsync();
+
+      const fileUri = `${FileSystem.documentDirectory}test.pdf`;
+
+      await FileSystem.copyAsync({
+        from: asset.localUri || asset.uri,
+        to: fileUri,
+      });
+
+      const canShare = await Sharing.isAvailableAsync();
+      if (canShare) {
+        await Sharing.shareAsync(fileUri);
+      } else {
+        Alert.alert("No se puede compartir este archivo en este dispositivo.");
+      }
+    } catch (error) {
+      // @ts-ignore
+      Alert.alert("Error al guardar el archivo", error.message);
+    }
+  };
 
   return (
     <ScrollView className="flex-1 p-4">
@@ -91,9 +120,21 @@ export default function NulidadMatrimonialScreen() {
           Ver Detalle
         </Button>
       </View>
-      <Text className="mb-6 text-2xl font-bold text-center text-primary">
-        Nulidad Matrimonial
+      <Text className="mt-2 mb-6 text-2xl font-bold text-center text-primary">
+        Solicitud Nulidad Matrimonial
       </Text>
+      <Text className="mb-2 font-bold text-md text-primary">
+        Descargar formato de nulidad Matrimonial
+      </Text>
+      <Button
+        mode="outlined"
+        textColor="#592c00"
+        className="mb-2"
+        onPress={saveFile}
+      >
+        Compartir o guardar en el teléfono
+      </Button>
+
       <View className="mb-6">
         <Text className="mb-2 text-lg font-semibold text-primary">
           Información Personal
@@ -308,7 +349,7 @@ export default function NulidadMatrimonialScreen() {
         </View>
         <View className="mx-2 mb-4">
           <Text className="mb-2 text-base text-primary">
-            Pruebas adicionales (opcional)
+            Formato Nulidad Matrimonial (obligatorio)
           </Text>
           <TouchableOpacity
             className="flex items-center justify-center h-10 bg-white border-2 rounded-3xl border-primary"
