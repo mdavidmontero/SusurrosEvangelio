@@ -115,6 +115,7 @@ export default function NulidadMatrimonialScreen() {
         <Button
           mode="contained"
           className=" bg-primary"
+          textColor="#FFFFFF"
           onPress={() => navigation.navigate("DetalleNulidadUser")}
         >
           Ver Detalle
@@ -394,6 +395,7 @@ export default function NulidadMatrimonialScreen() {
         </View>
         <Button
           mode="contained"
+          textColor="#FFFFFF"
           className="bg-primary"
           onPress={handleSubmit}
           disabled={!consentimiento}
