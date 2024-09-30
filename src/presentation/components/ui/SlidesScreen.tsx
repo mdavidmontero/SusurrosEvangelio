@@ -22,18 +22,18 @@ interface Slide {
 const items: Slide[] = [
   {
     title: "Iglesia Virtual",
-    desc: "Ea et eu enim fugiat sunt reprehenderit sunt aute quis tempor ipsum cupidatat et.",
-    img: require("../../../../assets/slide-1.png"),
+    desc: "Accede a contenido espiritual, misas en línea y recursos para el crecimiento personal desde la comodidad de tu hogar.",
+    img: require("../../../../assets/boton-1.jpg"),
   },
   {
-    title: "Nulidad matrimonial",
-    desc: "Anim est quis elit proident magna quis cupidatat curlpa labore Lorem ea. Exercitation mollit velit in aliquip tempor occaecat dolor minim amet dolor enim cillum excepteur. ",
-    img: require("../../../../assets/slide-2.png"),
+    title: "Nulidad Matrimonial",
+    desc: "Explora el proceso de nulidad matrimonial y obtén información sobre los requisitos y procedimientos necesarios.",
+    img: require("../../../../assets/boton-2.jpg"),
   },
   {
     title: "Temas de Citación",
-    desc: "Ex amet duis amet nulla. Aliquip ea Lorem ea culpa consequat proident. Nulla tempor esse ad tempor sit amet Lorem. Velit ea labore aute pariatur commodo duis veniam enim.",
-    img: require("../../../../assets/slide-3.png"),
+    desc: "Consulta citas importantes y eventos relacionados con la comunidad eclesiástica, y mantente informado sobre fechas clave.",
+    img: require("../../../../assets/boton-3.jpg"),
   },
 ];
 
@@ -59,14 +59,13 @@ export const SlidesScreen = () => {
   };
 
   const handleFinish = async () => {
-    const data = await AsyncStorage.setItem("isFirstLaunch", "true");
+    await AsyncStorage.setItem("isFirstLaunch", "true");
     navigation.goBack();
   };
 
   useEffect(() => {
     const checkTutorial = async () => {
-      const hasSeenTutorial = await AsyncStorage.getItem("isFirstLaunch");
-      console.log(hasSeenTutorial);
+      await AsyncStorage.getItem("isFirstLaunch");
     };
     checkTutorial();
   }, []);

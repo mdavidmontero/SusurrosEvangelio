@@ -9,12 +9,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 interface Props extends StackScreenProps<RootStackParams, "Home"> {}
 export const HomeScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
-  const { isFirstLaunch } = useAuthStore();
   useEffect(() => {
     const checkTutorial = async () => {
-      const hasSeenTutorial = await AsyncStorage.getItem("isFirstLaunch");
-      console.log(hasSeenTutorial);
-      if (hasSeenTutorial === "false") {
+      const hasSlpitTutorial = await AsyncStorage.getItem("isFirstLaunch");
+      if (hasSlpitTutorial === "false" || hasSlpitTutorial === null) {
         navigation.navigate("SlidesScreen");
       }
     };

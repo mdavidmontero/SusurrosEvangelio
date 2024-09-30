@@ -115,6 +115,7 @@ export default function NulidadMatrimonialScreen() {
         <Button
           mode="contained"
           className=" bg-primary"
+          textColor="#FFFFFF"
           onPress={() => navigation.navigate("DetalleNulidadUser")}
         >
           Ver Detalle
@@ -145,6 +146,7 @@ export default function NulidadMatrimonialScreen() {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             mode="flat"
             className="h-10 bg-white border-2 rounded-3xl border-primary"
             value={nulidad.nombre}
@@ -157,6 +159,7 @@ export default function NulidadMatrimonialScreen() {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             mode="flat"
             className="h-10 bg-white border-2 rounded-3xl border-primary"
             value={nulidad.apellidos}
@@ -170,6 +173,7 @@ export default function NulidadMatrimonialScreen() {
               cursorColor="#592C00"
               underlineColor="transparent"
               activeUnderlineColor="transparent"
+              textColor="#000000"
               mode="flat"
               className="h-10 bg-white border-2 rounded-3xl border-primary"
               editable={false}
@@ -194,6 +198,7 @@ export default function NulidadMatrimonialScreen() {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             mode="flat"
             className="h-10 bg-white border-2 rounded-3xl border-primary"
             keyboardType="email-address"
@@ -211,6 +216,7 @@ export default function NulidadMatrimonialScreen() {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             mode="flat"
             className="h-10 bg-white border-2 rounded-3xl border-primary"
             keyboardType="number-pad"
@@ -231,6 +237,7 @@ export default function NulidadMatrimonialScreen() {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             mode="flat"
             className="h-10 bg-white border-2 rounded-3xl border-primary"
             value={nulidad.lugarMatrimonio}
@@ -247,6 +254,7 @@ export default function NulidadMatrimonialScreen() {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             mode="flat"
             className="h-10 bg-white border-2 rounded-3xl border-primary"
             value={nulidad.nombreSacerdoteCelebrante}
@@ -263,6 +271,7 @@ export default function NulidadMatrimonialScreen() {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             mode="flat"
             className="h-10 bg-white border-2 rounded-3xl border-primary"
             value={nulidad.duracionConvivencia}
@@ -312,6 +321,7 @@ export default function NulidadMatrimonialScreen() {
             cursorColor="#592C00"
             underlineColor="transparent"
             activeUnderlineColor="transparent"
+            textColor="#000000"
             mode="flat"
             className="bg-white border-2 rounded-3xl border-primary"
             multiline={true}
@@ -385,6 +395,7 @@ export default function NulidadMatrimonialScreen() {
         </View>
         <Button
           mode="contained"
+          textColor="#FFFFFF"
           className="bg-primary"
           onPress={handleSubmit}
           disabled={!consentimiento}
