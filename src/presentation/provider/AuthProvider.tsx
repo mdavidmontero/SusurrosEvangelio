@@ -3,7 +3,6 @@ import { useAuthStore } from "../store/useAuthStore";
 import { obtenerUsuarioPorId } from "../../actions/user.action";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { LoadingScreen } from "../components/shared/LoadinScreen";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const auth = getAuth();

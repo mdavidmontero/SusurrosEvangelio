@@ -1,8 +1,5 @@
 import { Alert, Image, ScrollView, Text, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
-import Entypo from "@expo/vector-icons/Entypo";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { RootStackParams } from "../../navigation/AuthNavigator";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
